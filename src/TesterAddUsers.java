@@ -6,10 +6,13 @@ public class TesterAddUsers {
 
        // db_connector con = new db_connector();
 
-        Users u = new Users("ANDRE", "111", "ANDREA", "CARRA", "M", 21);
+        Users u = new Users("ANDRE", "111", "ANDREA", "CARRA", Sex.M, 21);
+        Users u1 = new Users("MARA", "222", "MARA", "GARZIA", Sex.F, 41);
 
+       //u.addUsers();
 
-       u.addUsers();
+       u.logIn("ANDRE", "111");
+       u.showEvents(SportType.CALCETTO, Level.MEDIUM);
 
     }
 }
