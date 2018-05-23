@@ -101,14 +101,15 @@ public class Users {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = getConnection(connectionString);
                 Statement stm = con.createStatement();
-                ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' OR LEVEL_EVENT = '"+level+"')");
-                if (res.next()) {
+                ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+getSex()+"')");
+                if (res.wasNull()) {
+                        System.out.println("Event not found");
+                }
+                else {
                     while (res.next()) {
-                        System.out.println(res.getString("LOCATION") + " " + res.getString("EVENT_DATE") + " " + res.getString("EVENT_HOUR"));
-                        r = true;
-                    }
-                } else {
-                    System.out.println("Event not found");
+                    System.out.println(res.getString("LOCATION") + " " + res.getString("EVENT_DATE") + " " + res.getString("EVENT_HOUR"));
+                    r = true;
+            }
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
