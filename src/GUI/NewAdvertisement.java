@@ -26,6 +26,9 @@ public class NewAdvertisement {
         window.setMinHeight(250);
 
         GridPane grid = new GridPane();
+        grid.setPadding(new Insets(15,15,15,15));
+        grid.setVgap(8);
+        grid.setHgap(10);
 
         //Sport Label
         Label sportLabel = new Label("Sport:");

@@ -2,6 +2,7 @@ package GUI;
 
 import GUI.HomePage;
 import GUI.LogIn;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +17,11 @@ public class Profile {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinHeight(250);
+
         GridPane grid = new GridPane();
+        grid.setPadding(new Insets(15,15,15,15));
+        grid.setVgap(8);
+        grid.setHgap(10);
 
         Label name= new Label("Name:");
         GridPane.setConstraints(name,0,0);

@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.application.Application;
@@ -13,13 +14,24 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-;import java.awt.event.ActionListener;
+;import javax.swing.*;
+import javax.swing.text.html.ImageView;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class HomePage {
 
@@ -30,26 +42,32 @@ public class HomePage {
         window.setTitle(title);
         window.setMinHeight(250);
 
-        GridPane grid= new GridPane();
-        grid.setPadding(new Insets(40,40,40,40));
-        grid.setVgap(8);
-        grid.setHgap(10);
+
+        HBox hbox = new HBox();
+        hbox.setPadding(new Insets(15, 12, 15, 12));
+        hbox.setSpacing(10);
+        hbox.setStyle("-fx-background-color: Blue;");
+
+        VBox vBox= new VBox();
+        vBox.setPadding(new Insets(15,12,15,12));
+        vBox.setSpacing(10);
+        vBox.setAlignment(Pos.BOTTOM_LEFT);
+
+
+        Text text= new Text("Filtra");
+        text.setFont(Font.font("Arial", FontWeight.BOLD,14));
 
 
         Label sportLabel= new Label("Sport:");
-        GridPane.setConstraints(sportLabel, 0,2);
         ObservableList <String> sportList= FXCollections.observableArrayList(
                 "Calcetto","Pallavolo","Basket","Tennis"
         );
         ComboBox comboBoxSport= new ComboBox(sportList);
         comboBoxSport.setPromptText("Choose sport");
 
-        GridPane.setConstraints(comboBoxSport,0,3);
-
 
 
         Label roleLabel = new Label("Role:");
-        GridPane.setConstraints(roleLabel,0,4);
 
         ObservableList calcettoList = FXCollections.observableArrayList(
                 "Portiere","Giocatore"
@@ -93,10 +111,9 @@ public class HomePage {
             }
         });
         comboBoxRole.setPromptText("Choose role");
-        GridPane.setConstraints(comboBoxRole,0,5);
+
 
         Label levelLabel = new Label("Level:");
-        GridPane.setConstraints(levelLabel,0,6);
         ObservableList<String>level= FXCollections.observableArrayList(
                 "Low",
                 "Medium",
@@ -107,35 +124,43 @@ public class HomePage {
         GridPane.setConstraints(comboBoxLevel, 0,7);
 
         Button sourchButton= new Button("Sourch");
-        GridPane.setConstraints(sourchButton,0,8);
 
         Button newAdvertisement = new Button("New Advertisement");
         newAdvertisement.setOnAction(event -> NewAdvertisement.display("New Advertisement"));
-        GridPane.setConstraints(newAdvertisement,12,0);
+        newAdvertisement.setPrefSize(100,20);
 
-        Button profileButton = new Button("GUI.Profile");
+        Button profileButton = new Button("Profile");
         profileButton.setOnAction(event -> {
-            Profile.display("GUI.Profile");
+            Profile.display("Profile");
             window.close();
         });
-        GridPane.setConstraints(profileButton,13,0);
+        profileButton.setPrefSize(100,20);
 
         Button logOut= new Button("Log Out");
         logOut.setOnAction(event -> {
             LogIn.display("Log In");
             window.close();
         });
-        GridPane.setConstraints(logOut,14,0);
+        logOut.setPrefSize(100,20);
+
 
         WebView advArea = new WebView();
-        GridPane.setConstraints(advArea,13,2);
 
 
-        grid.getChildren().addAll(sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,newAdvertisement,profileButton,logOut, advArea);
+
+        hbox.getChildren().addAll(newAdvertisement,profileButton,logOut);
+        vBox.getChildren().addAll(text,sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,sourchButton);
+
+
+        BorderPane borderPane= new BorderPane();
+        borderPane.setTop(hbox);
+        borderPane.setBottom(vBox);
+        borderPane.setCenter(advArea);
+
 
         StackPane layout = new StackPane();
         Scene scene;
-        scene= new Scene(grid,700,700);
+        scene= new Scene(borderPane,700,700);
         window.setScene(scene);
         window.showAndWait();
 

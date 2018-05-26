@@ -7,8 +7,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 public class SignUp {
 
@@ -25,45 +29,48 @@ public class SignUp {
         grid.setVgap(8);
         grid.setHgap(10);
 
+        Text welcomeText= new Text("If you dont't have an account,\n please sign up!");
+        welcomeText.setFont(Font.font("Ariel", FontWeight.LIGHT, 20));
+        GridPane.setConstraints(welcomeText,0,0);
         //userame Label
         Label nameLabel = new Label("Username:");
-        GridPane.setConstraints(nameLabel,0,0);
+        GridPane.setConstraints(nameLabel,0,2);
 
         //userame Input
         TextField nameInput = new TextField();
         nameInput.setPromptText("Username");
-        GridPane.setConstraints(nameInput,1,0);
+        GridPane.setConstraints(nameInput,1,2);
 
         //Pass Label
         Label passLable= new Label("Password:");
-        GridPane.setConstraints(passLable,0,1);
+        GridPane.setConstraints(passLable,0,3);
 
         //Pass Input
         PasswordField passInput= new PasswordField();
         passInput.setPromptText("password");
-        GridPane.setConstraints(passInput,1,1);
+        GridPane.setConstraints(passInput,1,3);
 
         //Name Label
         Label namevLabel = new Label("Name:");
-        GridPane.setConstraints(namevLabel,0,2);
+        GridPane.setConstraints(namevLabel,0,4);
 
         //Name input
         TextField namevInput= new TextField();
         namevInput.setPromptText("Name");
-        GridPane.setConstraints(namevInput,1,2);
+        GridPane.setConstraints(namevInput,1,4);
 
         //Surname label
         Label surnameLabel= new Label("Surname:");
-        GridPane.setConstraints(surnameLabel, 0,3);
+        GridPane.setConstraints(surnameLabel, 0,5);
 
         //Surname input
         TextField surnameInput = new TextField();
         surnameInput.setPromptText("Surname");
-        GridPane.setConstraints(surnameInput,1,3);
+        GridPane.setConstraints(surnameInput,1,5);
 
         //Birthday Label
         Label birthdayLabel= new Label("Day of Birth:");
-        GridPane.setConstraints(birthdayLabel,0,4);
+        GridPane.setConstraints(birthdayLabel,0,6);
 
         //day of birthday
 
@@ -104,7 +111,7 @@ public class SignUp {
         ComboBox comboBoxday= new ComboBox(day);
         comboBoxday.setPromptText("-");
         comboBoxday.setVisibleRowCount(31);
-        GridPane.setConstraints(comboBoxday,1,4);
+        GridPane.setConstraints(comboBoxday,1,6);
 
         //mounth of birth
         ObservableList<String> mounth= FXCollections.observableArrayList(
@@ -126,7 +133,7 @@ public class SignUp {
 
         ComboBox comboBoxmounth= new ComboBox(mounth);
         comboBoxmounth.setPromptText("-");
-        GridPane.setConstraints(comboBoxmounth,2,4);
+        GridPane.setConstraints(comboBoxmounth,2,6);
 
         ObservableList<String> year = FXCollections.observableArrayList(
                 "-",
@@ -235,11 +242,11 @@ public class SignUp {
 
         ComboBox comboBoxyears= new ComboBox(year);
         comboBoxyears.setPromptText("-");
-        GridPane.setConstraints(comboBoxyears,3,4);
+        GridPane.setConstraints(comboBoxyears,3,6);
 
         //Sex label
         Label sexLabel= new Label("Sex:");
-        GridPane.setConstraints(sexLabel,0,5);
+        GridPane.setConstraints(sexLabel,0,7);
 
         //Sex Input
         ObservableList<String> sex = FXCollections.observableArrayList(
@@ -249,24 +256,24 @@ public class SignUp {
         );
         ComboBox comboBoxsex = new ComboBox(sex);
         comboBoxsex.setPromptText("Choose sex");
-        GridPane.setConstraints(comboBoxsex,1,5);
+        GridPane.setConstraints(comboBoxsex,1,7);
 
         Button SignUpButton = new Button("Sign Up");
-        GridPane.setConstraints(SignUpButton,1,6);
+        GridPane.setConstraints(SignUpButton,1,8);
         SignUpButton.setOnAction(event -> {
             LogIn.display("Log In");
             window.close();
         });
 
         Button logInButton =new Button("Log In");
-        GridPane.setConstraints(logInButton,2,6);
+        GridPane.setConstraints(logInButton,2,8);
         logInButton.setOnAction(event -> {
             LogIn.display("Log In");
             window.close();
         });
 
 
-        grid.getChildren().addAll(nameLabel, nameInput, passLable,passInput, namevLabel, namevInput,surnameLabel, surnameInput, birthdayLabel, comboBoxday,comboBoxmounth,comboBoxyears, sexLabel, comboBoxsex, SignUpButton, logInButton);
+        grid.getChildren().addAll(welcomeText,nameLabel, nameInput, passLable,passInput, namevLabel, namevInput,surnameLabel, surnameInput, birthdayLabel, comboBoxday,comboBoxmounth,comboBoxyears, sexLabel, comboBoxsex, SignUpButton, logInButton);
 
 
         Scene scene= new Scene(grid,700,500);
