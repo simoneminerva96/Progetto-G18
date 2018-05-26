@@ -49,7 +49,7 @@ public class LogIn {
         Button logInButton = new Button("Log In");
         GridPane.setConstraints(logInButton, 1,4);
         logInButton.setOnAction(event -> {
-           ErrorInLogIn.display("Error");
+           HomePage.display("Home Page");
             window.close();
         });
 

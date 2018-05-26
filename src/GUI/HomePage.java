@@ -23,15 +23,12 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-;import javax.swing.*;
-import javax.swing.text.html.ImageView;
-import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class HomePage {
 
@@ -144,13 +141,13 @@ public class HomePage {
         logOut.setPrefSize(100,20);
 
 
-        WebView advArea = new WebView();
-
+        TextArea advArea = new TextArea();
+        advArea.getScrollLeft();
+        advArea.setPromptText("New Advertisement Soon...");
 
 
         hbox.getChildren().addAll(newAdvertisement,profileButton,logOut);
         vBox.getChildren().addAll(text,sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,sourchButton);
-
 
         BorderPane borderPane= new BorderPane();
         borderPane.setTop(hbox);
