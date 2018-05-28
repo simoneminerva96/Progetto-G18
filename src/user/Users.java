@@ -1,8 +1,13 @@
 package user;
 
+import advertisment.*;
+
+import javax.xml.transform.Result;
 import java.sql.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import static java.sql.DriverManager.getConnection;
+import java.util.*;
 
 public class Users {
     private String userName;
@@ -23,6 +28,14 @@ public class Users {
         this.age = age;
         loggedIn = false;
         this.eventSelected = new ArrayList<>();
+    }
+
+
+
+
+
+    public int getAge() {
+        return age;
     }
 
 
@@ -168,12 +181,22 @@ public class Users {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = getConnection(connectionString);
                 Statement stm = con.createStatement();
-                ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+getSex()+"')");
+                ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+getSex()+"' AND AGE_MIN <= '"+getAge()+"' AND AGE_MAX >= '"+getAge()+"')");
                 if (res.next()) {
-                    System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                    if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
+                        System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
+                    }
+                    else {
+                        System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                    }
                     eventSelected.add(res.getInt("COD"));
                     while (res.next()) {
-                        System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                        if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
+                            System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
+                        }
+                        else {
+                            System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                        }
                         eventSelected.add(res.getInt("COD"));
                         r = true;
                     }
@@ -233,6 +256,54 @@ public class Users {
             }
         }
         con.close();
+        return r;
+    }
+
+
+
+
+
+    public boolean addEvent (Advertisment advertisment) throws ClassNotFoundException, SQLException {
+        Connection con = null;
+        boolean r = false;
+
+
+        int cod = 0;
+        if (advertisment.checkDate() == true) {
+
+            if (loggedIn == true) {
+                try {
+                    String connectionString = "jdbc:mysql://localhost:3306/selection?user=root&password=qazxswedc4321@";
+                    Class.forName("com.mysql.jdbc.Driver");
+                    con = getConnection(connectionString);
+                    Statement stm = con.createStatement();
+                    Statement stmt = con.createStatement();
+                    ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT");
+                    while (res.next()) {
+                        cod++;
+                    }
+
+
+
+                    int count = stmt.executeUpdate("INSERT INTO ADVERTISMENT (COD, SPORT, LOCATION, EVENT_DATE, EVENT_HOUR, ROLE_REQUEST, AGE_MIN, AGE_MAX, LEVEL_EVENT, SEX) VALUES ('"+(cod+1)+"', '"+advertisment.getSport()+"', '"+advertisment.getLocation()+"', '"+java.sql.Date.valueOf(advertisment.getDate())+"', '"+java.sql.Time.valueOf(advertisment.getTime())+"', '"+advertisment.getRole()+"', '"+advertisment.getAgeMin()+"', '"+advertisment.getAgeMax()+"', '"+advertisment.getLevel()+"', '"+advertisment.getSex()+"' )");
+                    if (count != 0) {
+                        System.out.println("Event added succesfully");
+                        r = true;
+                    }
+                    else {
+                        System.out.println("Error");
+                    }
+
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+
+            }
+            else {
+                System.out.println("Error: you are not logged in");
+            }
+        }
+         con.close();
         return r;
     }
 }
