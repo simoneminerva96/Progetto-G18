@@ -209,6 +209,7 @@ public class Users {
             if (eventSelected.contains(cod)) {
                 r = true;
                 System.out.println("event selected: " + cod);
+                eventSelected.clear();
                 try {
                     String connectionString = "jdbc:mysql://localhost:3306/selection?user=root&password=qazxswedc4321@";
                     Class.forName("com.mysql.jdbc.Driver");
