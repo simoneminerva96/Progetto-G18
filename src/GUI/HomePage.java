@@ -120,7 +120,7 @@ public class HomePage {
         comboBoxLevel.setPromptText("Choose level");
         GridPane.setConstraints(comboBoxLevel, 0,7);
 
-        Button sourchButton= new Button("Surch");
+        Button sourceButton= new Button("source");
 
         Button newAdvertisement = new Button("New Advertisement");
         newAdvertisement.setOnAction(event -> NewAdvertisement.display("New Advertisement"));
@@ -147,7 +147,7 @@ public class HomePage {
 
 
         hbox.getChildren().addAll(newAdvertisement,profileButton,logOut);
-        vBox.getChildren().addAll(text,sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,sourchButton);
+        vBox.getChildren().addAll(text,sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,sourceButton);
 
         BorderPane borderPane= new BorderPane();
         borderPane.setTop(hbox);
