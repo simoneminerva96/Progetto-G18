@@ -59,11 +59,11 @@ public class NewAdvertisement {
         );
 
         ObservableList tennisList = FXCollections.observableArrayList(
-                "Null"
+                "Non"
         );
 
         ObservableList basketList = FXCollections.observableArrayList(
-                "Null"
+                "Non"
         );
 
 

@@ -77,11 +77,11 @@ public class HomePage {
         );
 
         ObservableList tennisList = FXCollections.observableArrayList(
-                "Null"
+                "Non"
         );
 
         ObservableList basketList = FXCollections.observableArrayList(
-                "Null"
+                "Non"
         );
 
 
@@ -120,7 +120,7 @@ public class HomePage {
         comboBoxLevel.setPromptText("Choose level");
         GridPane.setConstraints(comboBoxLevel, 0,7);
 
-        Button sourchButton= new Button("Sourch");
+        Button sourchButton= new Button("Surch");
 
         Button newAdvertisement = new Button("New Advertisement");
         newAdvertisement.setOnAction(event -> NewAdvertisement.display("New Advertisement"));
