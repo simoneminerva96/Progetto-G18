@@ -170,7 +170,7 @@ public class Users {
 
 
 
-    public boolean showEvents (SportType sport, Level level) throws ClassNotFoundException, SQLException {
+    public boolean showEvents (SportType sport, Level level, Periodicity periodicity) throws ClassNotFoundException, SQLException {
         Connection con = null;
 
         boolean r = false;
@@ -181,7 +181,7 @@ public class Users {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = getConnection(connectionString);
                 Statement stm = con.createStatement();
-                ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+getSex()+"' AND AGE_MIN <= '"+getAge()+"' AND AGE_MAX >= '"+getAge()+"')");
+                ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+getSex()+"' AND AGE_MIN <= '"+getAge()+"' AND AGE_MAX >= '"+getAge()+"' AND PERIODICITY = '"+periodicity+"')");
                 if (res.next()) {
                     if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
                         System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
@@ -285,7 +285,7 @@ public class Users {
 
 
 
-                    int count = stmt.executeUpdate("INSERT INTO ADVERTISMENT (COD, SPORT, LOCATION, EVENT_DATE, EVENT_HOUR, ROLE_REQUEST, AGE_MIN, AGE_MAX, LEVEL_EVENT, SEX) VALUES ('"+(cod+1)+"', '"+advertisment.getSport()+"', '"+advertisment.getLocation()+"', '"+java.sql.Date.valueOf(advertisment.getDate())+"', '"+java.sql.Time.valueOf(advertisment.getTime())+"', '"+advertisment.getRole()+"', '"+advertisment.getAgeMin()+"', '"+advertisment.getAgeMax()+"', '"+advertisment.getLevel()+"', '"+advertisment.getSex()+"' )");
+                    int count = stmt.executeUpdate("INSERT INTO ADVERTISMENT (COD, SPORT, LOCATION, EVENT_DATE, EVENT_HOUR, ROLE_REQUEST, PERIODICITY, AGE_MIN, AGE_MAX, LEVEL_EVENT, SEX) VALUES ('"+(cod+1)+"', '"+advertisment.getSport()+"', '"+advertisment.getLocation()+"', '"+java.sql.Date.valueOf(advertisment.getDate())+"', '"+java.sql.Time.valueOf(advertisment.getTime())+"', '"+advertisment.getRole()+"', '"+advertisment.getPeriodicity()+"', '"+advertisment.getAgeMin()+"', '"+advertisment.getAgeMax()+"', '"+advertisment.getLevel()+"', '"+advertisment.getSex()+"' )");
                     if (count != 0) {
                         System.out.println("Event added succesfully");
                         r = true;
