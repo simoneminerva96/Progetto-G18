@@ -59,11 +59,11 @@ public class NewAdvertisement {
         );
 
         ObservableList tennisList = FXCollections.observableArrayList(
-                "Non"
+                "None"
         );
 
         ObservableList basketList = FXCollections.observableArrayList(
-                "Non"
+                "None"
         );
 
 
@@ -271,7 +271,24 @@ public class NewAdvertisement {
         comboBoxmounth.setPromptText("-");
         GridPane.setConstraints(comboBoxmounth,2,4);
 
-        grid.getChildren().addAll(sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,timeLabel,comboBoxHour,comboBoxMins,dataLabel,comboBoxday,comboBoxmounth);
+        //Periodicity Label
+        Label periodicyLabel= new Label("Periodicità:");
+        GridPane.setConstraints(periodicyLabel,0,5);
+
+        //check box Giornaliero
+        CheckBox checkBoxGiornaliero = new CheckBox("Giornaliero");
+        GridPane.setConstraints(checkBoxGiornaliero,1,5);
+
+        //Check box Settimanale
+        CheckBox checkBoxSettimanale= new CheckBox("Settimanale");
+        GridPane.setConstraints(checkBoxSettimanale,2,5);
+
+        //Check box Mensile
+        CheckBox checkBoxMensile = new CheckBox("Mensile");
+        GridPane.setConstraints(checkBoxMensile,3,5);
+
+
+        grid.getChildren().addAll(sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,timeLabel,comboBoxHour,comboBoxMins,dataLabel,comboBoxday,comboBoxmounth, periodicyLabel,checkBoxGiornaliero,checkBoxSettimanale,checkBoxMensile);
 
         TextArea area = new TextArea();
         area.setPromptText("Write a new advertisement here");

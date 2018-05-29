@@ -77,11 +77,11 @@ public class HomePage {
         );
 
         ObservableList tennisList = FXCollections.observableArrayList(
-                "Non"
+                "None"
         );
 
         ObservableList basketList = FXCollections.observableArrayList(
-                "Non"
+                "None"
         );
 
 
