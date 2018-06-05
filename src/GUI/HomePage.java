@@ -45,6 +45,11 @@ public class HomePage {
         hbox.setSpacing(10);
         hbox.setStyle("-fx-background-color: Blue;");
 
+        HBox periodicity= new HBox();
+        hbox.setPadding(new Insets(15, 12, 15, 12));
+        hbox.setSpacing (50);
+
+
         VBox vBox= new VBox();
         vBox.setPadding(new Insets(15,12,15,12));
         vBox.setSpacing(10);
@@ -64,50 +69,20 @@ public class HomePage {
 
 
 
-        Label roleLabel = new Label("Role:");
+        //Periodicity Label
+        Label periodicyLabel= new Label("Periodicità:");
 
-        ObservableList calcettoList = FXCollections.observableArrayList(
-                "Portiere","Giocatore"
-        );
-
-
-
-        ObservableList pallavoloList = FXCollections.observableArrayList(
-                "Palleggiatore", "Giocatore"
-        );
-
-        ObservableList tennisList = FXCollections.observableArrayList(
-                "None"
-        );
-
-        ObservableList basketList = FXCollections.observableArrayList(
-                "None"
-        );
+        //check box Giornaliero
+        CheckBox checkBoxGiornaliero = new CheckBox("Giornaliero");
 
 
-        final ComboBox comboBoxRole= new ComboBox();
+        //Check box Settimanale
+        CheckBox checkBoxSettimanale= new CheckBox("Settimanale");
 
 
-        comboBoxSport.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                switch (newValue.toString()){
-                    case "Calcetto":
-                        comboBoxRole.setItems(calcettoList);
-                        break;
-                    case "Pallavolo":
-                        comboBoxRole.setItems(pallavoloList);
-                        break;
-                    case "Tennis":
-                        comboBoxRole.setItems(tennisList);
-                        break;
-                    case "Basket":
-                        comboBoxRole.setItems(basketList);
-                        break;
-                }
-            }
-        });
-        comboBoxRole.setPromptText("Choose role");
+        //Check box Mensile
+        CheckBox checkBoxMensile = new CheckBox("Mensile");
+
 
 
         Label levelLabel = new Label("Level:");
@@ -120,7 +95,7 @@ public class HomePage {
         comboBoxLevel.setPromptText("Choose level");
         GridPane.setConstraints(comboBoxLevel, 0,7);
 
-        Button sourceButton= new Button("source");
+        Button searchButton= new Button("search");
 
         Button newAdvertisement = new Button("New Advertisement");
         newAdvertisement.setOnAction(event -> NewAdvertisement.display("New Advertisement"));
@@ -141,13 +116,12 @@ public class HomePage {
         logOut.setPrefSize(100,20);
 
 
-        TextArea advArea = new TextArea();
-        advArea.getScrollLeft();
-        advArea.setPromptText("New Advertisement Soon...");
+        ListView advArea = new ListView();
 
 
         hbox.getChildren().addAll(newAdvertisement,profileButton,logOut);
-        vBox.getChildren().addAll(text,sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,sourceButton);
+        periodicity.getChildren().addAll(checkBoxGiornaliero,checkBoxSettimanale,checkBoxMensile);
+        vBox.getChildren().addAll(text,sportLabel,comboBoxSport,periodicyLabel,periodicity,levelLabel,comboBoxLevel,searchButton);
 
         BorderPane borderPane= new BorderPane();
         borderPane.setTop(hbox);
