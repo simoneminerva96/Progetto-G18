@@ -12,7 +12,7 @@ import static java.sql.DriverManager.getConnection;
 public class AdvertismentDAO {
 
 
-    public static ArrayList<Integer> getAdvertisment (SportType sport, Level level, Periodicity periodicity, int age, Sex sex) throws ClassNotFoundException, SQLException{
+    public static ArrayList<Integer> getAdvertisment (SportType sport, Level level, Periodicity periodicity, int age, Sex sex) {
 
 
         ArrayList<Integer> eventSelected = new ArrayList<>();
@@ -48,11 +48,14 @@ public class AdvertismentDAO {
             else {
                 System.out.println("Event not found");
             }
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
 
-        con.close();
+
 
         return eventSelected;
     }
@@ -64,7 +67,7 @@ public class AdvertismentDAO {
 
 
 
-    public static boolean checkAdvertisment (int cod) throws ClassNotFoundException, SQLException {
+    public static boolean checkAdvertisment (int cod) {
         boolean r = false;
         Connection con = null;
 
@@ -79,9 +82,12 @@ public class AdvertismentDAO {
             if (res.next()) {
                 r = true;
             }
+            con.close();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
 
         return r;
@@ -93,7 +99,7 @@ public class AdvertismentDAO {
 
 
 
-    public static boolean deleteAdvertisment (int cod) throws ClassNotFoundException, SQLException {
+    public static boolean deleteAdvertisment (int cod) {
         boolean r = false;
 
         Connection con = null;
@@ -114,11 +120,14 @@ public class AdvertismentDAO {
             else {
                 System.out.println("Error");
             }
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
 
-        con.close();
+
 
         return r;
     }
@@ -127,7 +136,7 @@ public class AdvertismentDAO {
 
 
 
-    public static int checkCod() throws ClassNotFoundException, SQLException {
+    public static int checkCod()  {
         int newCod = 0;
 
         Connection con = null;
@@ -146,11 +155,14 @@ public class AdvertismentDAO {
                     newCod = res.getInt("COD") + 1;
                 }
             }
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
 
-        con.close();
+
 
         return newCod;
     }
@@ -160,7 +172,7 @@ public class AdvertismentDAO {
 
 
 
-    public static boolean addAdvertisment(Advertisment advertisment) throws ClassNotFoundException, SQLException {
+    public static boolean addAdvertisment(Advertisment advertisment) {
         boolean r = false;
 
         Connection con = null;
@@ -180,11 +192,13 @@ public class AdvertismentDAO {
             else {
                 System.out.println("Error");
             }
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
 
-        con.close();
 
         return r;
     }

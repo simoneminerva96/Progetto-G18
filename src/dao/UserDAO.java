@@ -10,7 +10,7 @@ import static java.sql.DriverManager.getConnection;
 public class UserDAO {
 
 
-    public static boolean checkUser(String userName) throws ClassNotFoundException, SQLException {
+    public static boolean checkUser(String userName)  {
         boolean r = false;
         Connection con = null;
 
@@ -27,11 +27,13 @@ public class UserDAO {
             else {
                 r = true;
             }
+            con.close();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
-        con.close();
 
         return r;
 
@@ -40,7 +42,7 @@ public class UserDAO {
 
 
 
-    public static boolean addUser(String userName, String password, String name, String surname, Sex sex, int age) throws ClassNotFoundException, SQLException{
+    public static boolean addUser(String userName, String password, String name, String surname, Sex sex, int age) {
         boolean r = false;
         Connection con = null;
 
@@ -57,15 +59,18 @@ public class UserDAO {
                 System.out.println("User registered.");
                 r = true;
             }
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
-        con.close();
+
         return r;
     }
 
 
-    public static String getPassword (String userName) throws ClassNotFoundException, SQLException{
+    public static String getPassword (String userName) {
         Connection con = null;
         String password = null;
 
@@ -78,18 +83,20 @@ public class UserDAO {
             ResultSet res = stm.executeQuery("SELECT * FROM USERS WHERE USERNAME = '"+userName+"'");
             res.next();
             password = res.getString("PASSWORD_P");
-
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
 
-        con.close();
+
         return password;
 
     }
 
 
-    public static boolean deleteUser (String userName) throws ClassNotFoundException, SQLException{
+    public static boolean deleteUser (String userName) {
         boolean r = false;
         Connection con = null;
 
@@ -104,8 +111,11 @@ public class UserDAO {
             if (count != 0) {
                 r = true;
             }
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
         }
 
         return r;
