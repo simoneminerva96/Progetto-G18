@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.UserController;
 import GUI.LogIn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,11 +13,21 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import tester.*;
+import user.Sex;
+
+import java.io.Serializable;
+import java.sql.SQLException;
 
 
 public class SignUp {
+    private static UserController userController;
 
-    public static void display(String title){
+    public static void setController(UserController c) {
+        userController = c;
+    }
+
+    public static void display(String title) throws ClassNotFoundException, SQLException{
 
         Stage window = new Stage();
 
@@ -69,12 +80,18 @@ public class SignUp {
         GridPane.setConstraints(surnameInput,1,5);
 
         //Birthday Label
-        Label birthdayLabel= new Label("Day of Birth:");
+        Label birthdayLabel= new Label("Age:");
         GridPane.setConstraints(birthdayLabel,0,6);
 
         //day of birthday
 
-        TextField ageField= new TextField();
+        ObservableList<Integer> ageList= FXCollections.observableArrayList(
+                14,
+                15,
+                16,
+                17
+        );
+        ComboBox ageField = new ComboBox(ageList);
         GridPane.setConstraints(ageField,1,6);
 
         //Sex label
@@ -82,10 +99,10 @@ public class SignUp {
         GridPane.setConstraints(sexLabel,0,7);
 
         //Sex Input
-        ObservableList<String> sex = FXCollections.observableArrayList(
-                "-",
-                "M",
-                "F"
+        ObservableList<Sex> sex = FXCollections.observableArrayList(
+
+                Sex.M,
+                Sex.F
         );
         ComboBox comboBoxsex = new ComboBox(sex);
         comboBoxsex.setPromptText("Choose sex");
@@ -94,6 +111,8 @@ public class SignUp {
         Button SignUpButton = new Button("Sign Up");
         GridPane.setConstraints(SignUpButton,1,8);
         SignUpButton.setOnAction(event -> {
+            setController(userController);
+            userController.signUp(nameInput.getText(),passInput.getText(), namevInput.getText(), surnameInput.getText(),(Sex)comboBoxsex.getValue(),(int)ageField.getValue());
             LogIn.display("Log In");
             window.close();
         });
