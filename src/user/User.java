@@ -48,7 +48,7 @@ public class User {
 
 
 
-    public boolean signUp() throws ClassNotFoundException, SQLException {
+    public boolean signUp() {
 
         boolean r = false;
 
@@ -71,7 +71,7 @@ public class User {
 
 
 
-    public boolean logIn(String userName, String password) throws ClassNotFoundException, SQLException {
+    public boolean logIn(String userName, String password) {
         if (UserDAO.checkUser(userName) == false) {
             if (UserDAO.getPassword(userName).equals(password)) {
                 loggedIn = true;
@@ -93,7 +93,7 @@ public class User {
 
 
 
-    public boolean deleteProfile () throws ClassNotFoundException, SQLException {
+    public boolean deleteProfile () {
         boolean r = false;
         if (loggedIn == true) {
             if (UserDAO.deleteUser(userName) == true) {
@@ -129,7 +129,7 @@ public class User {
 
 
 
-    public boolean showEvents (SportType sport, Level level, Periodicity periodicity) throws ClassNotFoundException, SQLException {
+    public boolean showEvents (SportType sport, Level level, Periodicity periodicity)  {
 
 
         boolean r = false;
@@ -153,7 +153,7 @@ public class User {
 
 
 
-    public boolean selectEvent(int cod) throws ClassNotFoundException, SQLException {
+    public boolean selectEvent(int cod)  {
         boolean r = false;
 
 
@@ -179,7 +179,7 @@ public class User {
 
 
 
-    public boolean addEvent (Advertisment advertisment) throws ClassNotFoundException, SQLException {
+    public boolean addEvent (Advertisment advertisment) {
         boolean r = false;
 
 
