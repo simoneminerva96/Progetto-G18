@@ -21,11 +21,6 @@ import java.sql.SQLException;
 
 
 public class SignUp {
-    private static UserController userController;
-
-    public static void setController(UserController c) {
-        userController = c;
-    }
 
     public static void display(String title) throws ClassNotFoundException, SQLException{
 
@@ -111,7 +106,7 @@ public class SignUp {
         Button SignUpButton = new Button("Sign Up");
         GridPane.setConstraints(SignUpButton,1,8);
         SignUpButton.setOnAction(event -> {
-            setController(userController);
+            UserController userController = new UserController();
             userController.signUp(nameInput.getText(),passInput.getText(), namevInput.getText(), surnameInput.getText(),(Sex)comboBoxsex.getValue(),(int)ageField.getValue());
             LogIn.display("Log In");
             window.close();
