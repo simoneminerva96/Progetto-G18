@@ -29,6 +29,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
+import java.sql.SQLException;
+
 
 public class HomePage {
 
@@ -110,8 +112,9 @@ public class HomePage {
 
         Button logOut= new Button("Log Out");
         logOut.setOnAction(event -> {
-            LogIn.display("Log In");
             window.close();
+            LogIn.display("");
+
         });
         logOut.setPrefSize(100,20);
 
