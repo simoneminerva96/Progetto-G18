@@ -1,5 +1,6 @@
 package tester;
 
+import Controller.UserController;
 import GUI.*;
 
 
@@ -14,8 +15,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import user.Sex;
+
+import java.sql.SQLException;
 
 public class Main extends Application{
+
 
     Stage window;;
 
@@ -23,8 +28,20 @@ public class Main extends Application{
         launch(args);
     }
 
+    private static UserController userController;
+
+
+
+    public static void setController(UserController c) {
+        userController = c;
+    }
+
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        UserController c = new UserController();
+
         window= primaryStage;
 
 
@@ -73,33 +90,40 @@ public class Main extends Application{
         GridPane.setConstraints(surnameInput,1,5);
 
         //Birthday Label
-        Label birthdayLabel= new Label("Age:");
+        Label birthdayLabel= new Label("Day of Birth:");
         GridPane.setConstraints(birthdayLabel,0,6);
 
         //day of birthday
 
-        TextField ageField= new TextField();
-        ageField.setPromptText("Age");
-        GridPane.setConstraints(ageField,1,6);
 
+        ObservableList<Integer> ageList= FXCollections.observableArrayList(
+                14,
+                15,
+                16,
+                17
+        );
+        ComboBox ageField = new ComboBox(ageList);
+        GridPane.setConstraints(ageField,1,6);
 
         //Sex label
         Label sexLabel= new Label("Sex:");
         GridPane.setConstraints(sexLabel,0,7);
 
         //Sex Input
-        ObservableList<String> sex = FXCollections.observableArrayList(
-                "-",
-                "M",
-                "F"
+        ObservableList<Sex> sex = FXCollections.observableArrayList(
+
+                Sex.M,
+                Sex.F
         );
         ComboBox comboBoxsex = new ComboBox(sex);
-        comboBoxsex.setPromptText("Choose sex");
+        comboBoxsex.setPromptText("Choose text");
         GridPane.setConstraints(comboBoxsex,1,7);
 
         Button SignUpButton = new Button("Sign Up");
         GridPane.setConstraints(SignUpButton,1,8);
         SignUpButton.setOnAction(event -> {
+            setController(userController);
+            userController.signUp(nameInput.getText(),passInput.getText(), namevInput.getText(), surnameInput.getText(), (Sex) comboBoxsex.getValue(),(int) ageField.getValue());
             LogIn.display("Log In");
             window.close();
         });
