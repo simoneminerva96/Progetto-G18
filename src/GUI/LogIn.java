@@ -46,7 +46,7 @@ public class LogIn {
 
         //Pass Input
         PasswordField passInput= new PasswordField();
-        passInput.setPromptText("password");
+        passInput.setPromptText("Password");
         GridPane.setConstraints(passInput,1,3);
 
         Button logInButton = new Button("Log In");
