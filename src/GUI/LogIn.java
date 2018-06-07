@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.UserController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,9 +12,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import user.User;
+
 
 public class LogIn {
+
+
 
     public static void display(String title){
         Stage window= new Stage();
@@ -49,10 +52,13 @@ public class LogIn {
         Button logInButton = new Button("Log In");
         GridPane.setConstraints(logInButton, 1,4);
         logInButton.setOnAction(event -> {
+
+            UserController userController = new UserController();
             window.close();
-            if(User.logIn(nameInput.getText(),passInput.getText()) == true) {
+            if(userController.logIn(nameInput.getText(),passInput.getText()) == true) {
                 HomePage.display("Home Page");
-            }else if (User.logIn(nameInput.getText(), passInput.getText()) == false){
+
+            }else if (userController.logIn(nameInput.getText(), passInput.getText()) == false){
                 ErrorInLogIn.display("Error!");
             }
 
@@ -69,5 +75,6 @@ public class LogIn {
         window.show();
 
     }
+
 
 }

@@ -11,6 +11,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 
 public class ErrorInLogIn {
     static boolean answer;
@@ -31,14 +33,14 @@ public class ErrorInLogIn {
 
 
         returnLog.setOnAction(event -> {
-            answer= true;
+            answer = true;
             LogIn.display("Log In");
             window.close();
         });
 
         signUp.setOnAction(event -> {
             answer = false;
-            SignUp.display("Sign Up");
+                SignUp.display("SignUp");
             window.close();
         });
 

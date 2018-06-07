@@ -1,16 +1,17 @@
 package GUI;
 
-import GUI.HomePage;
-import GUI.LogIn;
+
+
+import Controller.UserController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+
 
 public class Profile {
 
@@ -23,36 +24,36 @@ public class Profile {
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(40,40,40,40));
         grid.setVgap(8);
-        grid.setHgap(10);;
+        grid.setHgap(10);
 
-        Label name= new Label("Name:");
+        Label name= new Label("Name: ");
         GridPane.setConstraints(name,0,0);
 
-        TextField nameField= new TextField();
+        Label nameField= new Label();
         GridPane.setConstraints(nameField,1,0);
 
-        Label surname = new Label("Surname:");
+        Label surname = new Label("Surname: ");
         GridPane.setConstraints(surname,0,1);
 
-        TextField surnameField= new TextField();
+        Label surnameField= new Label();
         GridPane.setConstraints(surnameField,1,1);
 
-        Label username= new Label("Username:");
+        Label username= new Label("Username: ");
         GridPane.setConstraints(username,0,2);
 
-        TextField usernameField = new TextField();
+        Label usernameField = new Label();
         GridPane.setConstraints(usernameField,1,2);
 
-        Label data= new Label("Day of Birth:");
+        Label data= new Label("Age: ");
         GridPane.setConstraints(data,0,3);
 
-        TextField dataField= new TextField();
+        Label dataField= new Label();
         GridPane.setConstraints(dataField,1,3);
 
-        Label sex= new Label("Sex:");
+        Label sex= new Label("Sex: ");
         GridPane.setConstraints(sex,0,4);
 
-        TextField sexField = new TextField();
+        Label sexField = new Label();
         GridPane.setConstraints(sexField,1,4);
 
 
@@ -73,7 +74,17 @@ public class Profile {
             window.close();
         });
 
-        grid.getChildren().addAll(name,nameField,surname, surnameField,username, usernameField, data,dataField, sex,sexField, closeProfile,logOut);
+        Button Delete = new Button("Delete Profile");
+        GridPane.setConstraints(Delete, 3, 5);
+        Delete.setOnAction(event -> {
+            UserController userController = new UserController();
+            //
+            // userController.DeleteProfile(username);
+            SignUp.display("GUI.SignUp");
+            window.close();
+        });
+
+        grid.getChildren().addAll(name,nameField,surname, surnameField,username, usernameField, data,dataField, sex,sexField, closeProfile,logOut, Delete);
 
         Scene scene= new Scene(grid,500,500);
         window.setScene(scene);

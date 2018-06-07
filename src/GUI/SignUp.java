@@ -22,7 +22,7 @@ import java.sql.SQLException;
 
 public class SignUp {
 
-    public static void display(String title) throws ClassNotFoundException, SQLException{
+    public static void display(String title){
 
         Stage window = new Stage();
 
