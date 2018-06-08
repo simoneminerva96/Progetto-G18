@@ -196,4 +196,25 @@ public class User {
 
         return r;
     }
+
+
+
+
+
+
+    public User getUser() {
+        User user = UserDAO.getUser(userName);
+        user.toString();
+        return user;
+    }
+
+
+
+
+
+
+    @Override
+    public String toString() {
+        return userName + " " + password + " " + nameP + " " + surname + " " + sex + " " + age;
+    }
 }
