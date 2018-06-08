@@ -1,43 +1,29 @@
 package Controller;
 
-import dao.UserDAO;
+
 import user.Sex;
-
-
-import java.sql.SQLException;
+import user.User;
 
 public class UserController {
+    public String userName, password, name, surname;
+    public int age;
+    public Sex sex;
+    public User user = new User(userName, password, name, surname, sex, age);
 
-    private static void checkUser() throws SQLException, ClassNotFoundException {
-        try {
-            UserDAO.checkUser("");
-        } catch (SQLException e) {
-            throw e;
-        }
+    public User signUp(String userName, String password, String nameP, String surname, Sex sex, int age){
+        user = new User(userName, password, nameP, surname, sex, age);
+        user.signUp();
+        return user;
     }
 
-    private static void addUser () throws SQLException, ClassNotFoundException {
-        try {
-            UserDAO.addUser("","", "", "",Sex.values(), 0);
-        } catch (SQLException e) {
-            throw e;
-        }
+    public boolean logIn(String userName, String password) {
+        boolean r = false;
+        r = user.logIn( userName, password);
+        return r;
+
     }
 
-    private static void deleteUser () throws SQLException, ClassNotFoundException {
-        try {
-            UserDAO.deleteUser("");
-        } catch (SQLException e) {
-            throw e;
-        }
+    public void DeleteProfile(String userName){
+           user.deleteProfile(userName);
     }
-
-    private static void getPassword () throws SQLException, ClassNotFoundException {
-        try {
-            UserDAO.getPassword("");
-        } catch (SQLException e) {
-            throw e;
-        }
-    }
-
 }
