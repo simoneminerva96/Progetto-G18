@@ -10,10 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import user.User;
 
 
 public class Profile {
+
+    public static UserController c = new UserController();
+
+
+    public static void setController(UserController userController) {
+        c = userController;
+    }
 
     public static void display(String title){
         Stage window= new Stage();
@@ -26,34 +33,38 @@ public class Profile {
         grid.setVgap(8);
         grid.setHgap(10);
 
+        UserController userController = c;
+
+        User u = userController.getUser();
+
         Label name= new Label("Name: ");
         GridPane.setConstraints(name,0,0);
 
-        Label nameField= new Label();
+        Label nameField= new Label(u.getNameP());
         GridPane.setConstraints(nameField,1,0);
 
         Label surname = new Label("Surname: ");
         GridPane.setConstraints(surname,0,1);
 
-        Label surnameField= new Label();
+        Label surnameField= new Label(u.getSurname());
         GridPane.setConstraints(surnameField,1,1);
 
         Label username= new Label("Username: ");
         GridPane.setConstraints(username,0,2);
 
-        Label usernameField = new Label();
+        Label usernameField = new Label(u.getUserName());
         GridPane.setConstraints(usernameField,1,2);
 
         Label data= new Label("Age: ");
         GridPane.setConstraints(data,0,3);
 
-        Label dataField= new Label();
+        Label dataField= new Label(""+u.getAge());
         GridPane.setConstraints(dataField,1,3);
 
         Label sex= new Label("Sex: ");
         GridPane.setConstraints(sex,0,4);
 
-        Label sexField = new Label();
+        Label sexField = new Label(""+u.getSex());
         GridPane.setConstraints(sexField,1,4);
 
 
@@ -77,9 +88,8 @@ public class Profile {
         Button Delete = new Button("Delete Profile");
         GridPane.setConstraints(Delete, 3, 5);
         Delete.setOnAction(event -> {
-            UserController userController = new UserController();
-            //
-            // userController.DeleteProfile(username);
+
+            userController.DeleteProfile(u.getUserName());
             SignUp.display("GUI.SignUp");
             window.close();
         });

@@ -54,6 +54,7 @@ public class LogIn {
         logInButton.setOnAction(event -> {
 
             UserController userController = new UserController();
+            Profile.setController(userController);
             window.close();
             if(userController.logIn(nameInput.getText(),passInput.getText()) == true) {
                 HomePage.display("Home Page");
