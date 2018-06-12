@@ -46,7 +46,18 @@ public class User {
 
 
 
+    public String getUserName() {
+        return userName;
+    }
 
+
+    public String getNameP() {
+        return nameP;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
 
     public boolean signUp() {
 
@@ -93,19 +104,14 @@ public class User {
 
 
 
-    public boolean deleteProfile () {
+    public boolean deleteProfile (String userName) {
         boolean r = false;
-        if (loggedIn == true) {
-            if (UserDAO.deleteUser(userName) == true) {
-                System.out.println("User deleted successfully");
-                r = true;
-            }
-            else {
-                System.out.println("An error occurred during deleting");
-            }
+        if (UserDAO.deleteUser(userName) == true) {
+            System.out.println("User deleted successfully");
+            r = true;
         }
         else {
-            System.out.println("You can't delete your profile if you are not logged in");
+            System.out.println("An error occurred during deleting");
         }
         return r;
     }
