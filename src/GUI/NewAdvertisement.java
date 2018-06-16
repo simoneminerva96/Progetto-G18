@@ -1,23 +1,24 @@
 package GUI;
 
+import Controller.AdvertisementController;
+import advertisment.Advertisment;
+import advertisment.Location;
+import advertisment.Periodicity;
+import advertisment.Role;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.Node;
+import user.Level;
+import user.Sex;
+import user.SportType;
 
-import java.util.logging.Level;
 
 public class NewAdvertisement {
     public static void display(String title){
@@ -36,8 +37,11 @@ public class NewAdvertisement {
         Label sportLabel = new Label("Sport:");
         GridPane.setConstraints(sportLabel,0,0);
 
-        ObservableList <String> sportList= FXCollections.observableArrayList(
-                "Calcetto","Pallavolo","Basket","Tennis"
+        ObservableList <SportType> sportList= FXCollections.observableArrayList(
+                SportType.CALCETTO,
+                SportType.PALLAVOLO,
+                SportType.TENNIS,
+                SportType.BASKET
         );
         ComboBox comboBoxSport= new ComboBox(sportList);
         comboBoxSport.setPromptText("Choose sport");
@@ -48,22 +52,24 @@ public class NewAdvertisement {
         Label roleLabel = new Label("Role:");
         GridPane.setConstraints(roleLabel,0,1);
 
-        ObservableList calcettoList = FXCollections.observableArrayList(
-                "Portiere","Giocatore"
+        ObservableList <Role> calcettoList = FXCollections.observableArrayList(
+                Role.PLAYER,
+                Role.PORTIERE
         );
 
 
 
-        ObservableList pallavoloList = FXCollections.observableArrayList(
-                "Palleggiatore", "Giocatore"
+        ObservableList <Role> pallavoloList = FXCollections.observableArrayList(
+                Role.PLAYER,
+                Role.PALLEGGIATORE
         );
 
-        ObservableList tennisList = FXCollections.observableArrayList(
-                "None"
+        ObservableList <Role> tennisList = FXCollections.observableArrayList(
+                Role.NONE
         );
 
-        ObservableList basketList = FXCollections.observableArrayList(
-                "None"
+        ObservableList <Role> basketList = FXCollections.observableArrayList(
+                Role.NONE
         );
 
 
@@ -74,16 +80,16 @@ public class NewAdvertisement {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 switch (newValue.toString()){
-                    case "Calcetto":
+                    case "CALCETTO":
                         comboBoxRole.setItems(calcettoList);
                         break;
-                    case "Pallavolo":
+                    case "PALLAVOLO":
                         comboBoxRole.setItems(pallavoloList);
                         break;
-                    case "Tennis":
+                    case "TENNIS":
                         comboBoxRole.setItems(tennisList);
                         break;
-                    case "Basket":
+                    case "BASKET":
                         comboBoxRole.setItems(basketList);
                         break;
                 }
@@ -97,10 +103,10 @@ public class NewAdvertisement {
         GridPane.setConstraints(levelLabel,0,2);
 
         //Level Input
-        ObservableList<String> level = FXCollections.observableArrayList(
-                "Low",
-                "Medium",
-                "High"
+        ObservableList<Level> level = FXCollections.observableArrayList(
+                Level.LOW,
+                Level.MEDIUM,
+                Level.HIGH
         );
         ComboBox comboBoxLevel = new ComboBox(level);
         comboBoxLevel.setPromptText("Choose level");
@@ -250,26 +256,41 @@ public class NewAdvertisement {
         comboBoxday.setPromptText("D.");
         GridPane.setConstraints(comboBoxday,1,4);
 
-        ObservableList<String> mounth= FXCollections.observableArrayList(
-                "-",
-                "Genuary",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "Dicember"
+        ObservableList<Integer> month= FXCollections.observableArrayList(
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
 
         );
 
-        ComboBox comboBoxmounth= new ComboBox(mounth);
-        comboBoxmounth.setPromptText("M.");
-        GridPane.setConstraints(comboBoxmounth,2,4);
+        ComboBox comboBoxmonth= new ComboBox(month);
+        comboBoxmonth.setPromptText("M.");
+        GridPane.setConstraints(comboBoxmonth,2,4);
+
+        ObservableList<Integer> year= FXCollections.observableArrayList(
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023,
+                2024,
+                2025
+
+        );
+
+        ComboBox comboBoxyear= new ComboBox(year);
+        comboBoxyear.setPromptText("Y.");
+        GridPane.setConstraints(comboBoxyear,3,4);
 
         Label locationLabel= new Label("Location:");
         GridPane.setConstraints(locationLabel,0,5);
@@ -432,6 +453,14 @@ public class NewAdvertisement {
         });
         comboBoxProvince.setPromptText("Choose province");
 
+        TextField cityInput = new TextField();
+        cityInput.setPromptText("City");
+        GridPane.setConstraints(cityInput,3,5);
+
+        TextField addressInput = new TextField();
+        addressInput.setPromptText("Address");
+        GridPane.setConstraints(addressInput,4,5);
+
 
 
 
@@ -440,18 +469,15 @@ public class NewAdvertisement {
         GridPane.setConstraints(AgeLabel,0,6);
 
         //AgeMin Input
-        ObservableList<String> AgeMin= FXCollections.observableArrayList(
+        ObservableList<Integer> AgeMin= FXCollections.observableArrayList(
 
-                "10",
-                "20",
-                "30",
-                "40",
-                "50",
-                "60",
-                "70",
-                "80",
-                "90",
-                "100"
+                14,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70
 
         );
         ComboBox comboBoxAgeMin = new ComboBox(AgeMin);
@@ -460,55 +486,70 @@ public class NewAdvertisement {
 
         //Input AgeMax
 
-        ObservableList<String> AgeMax=FXCollections.observableArrayList(
-                "10",
-                "20",
-                "30",
-                "40",
-                "50",
-                "60",
-                "70",
-                "80",
-                "90",
-                "100"
+        ObservableList<Integer> AgeMax=FXCollections.observableArrayList(
+                14,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70
         );
         ComboBox comboBoxAgeMax = new ComboBox(AgeMax);
         comboBoxAgeMax.setPromptText("Age Max");
         GridPane.setConstraints(comboBoxAgeMax,2,6);
 
+        //Sex Label
+        Label SexLabel = new Label("Sex:");
+        GridPane.setConstraints(SexLabel,0,8);
+
+        ObservableList<Sex> sex=FXCollections.observableArrayList(
+               Sex.M,
+               Sex.F
+
+        );
+        ComboBox comboBoxSex = new ComboBox(sex);
+        comboBoxSex.setPromptText("Choose sex");
+        GridPane.setConstraints(comboBoxSex,1,8);
+
 
 
         //Periodicity Label
-        Label periodicyLabel= new Label("Periodicità:");
-        GridPane.setConstraints(periodicyLabel,0,7);
+        Label periodicityLabel= new Label("Periodicity:");
+        GridPane.setConstraints(periodicityLabel,0,7);
 
-        //check box Giornaliero
-        CheckBox checkBoxGiornaliero = new CheckBox("Giornaliero");
-        GridPane.setConstraints(checkBoxGiornaliero,1,7);
-
-        //Check box Settimanale
-        CheckBox checkBoxSettimanale= new CheckBox("Settimanale");
-        GridPane.setConstraints(checkBoxSettimanale,2,7);
-
-        //Check box Mensile
-        CheckBox checkBoxMensile = new CheckBox("Mensile");
-        GridPane.setConstraints(checkBoxMensile,3,7);
+        ObservableList<Periodicity> periodicity = FXCollections.observableArrayList(
+               Periodicity.GIORNALIERA,
+                Periodicity.SETTIMANALE,
+                Periodicity.MENSILE,
+                Periodicity.NONE
+        );
+        ComboBox comboBoxPeriodicity = new ComboBox(periodicity);
+        comboBoxPeriodicity.setPromptText("Choose periodicity");
+        GridPane.setConstraints(comboBoxPeriodicity,1,7);
 
 
-        grid.getChildren().addAll(sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,timeLabel,comboBoxHour,comboBoxMins, dataLabel,comboBoxday,comboBoxmounth, locationLabel, comboBoxRegion, comboBoxProvince, periodicyLabel,checkBoxGiornaliero,checkBoxSettimanale,checkBoxMensile, AgeLabel, comboBoxAgeMin, comboBoxAgeMax);
-
-        TextArea area = new TextArea();
-        area.setPromptText("Write a new advertisement here");
 
         Button create= new Button("Create");
+        GridPane.setConstraints(create,0,10);
         create.setOnAction(event -> {
+            AdvertisementController advertisementController = new AdvertisementController();
+            Location l = new Location(""+cityInput.getText(),", "+addressInput.getText(),", "+comboBoxRegion.getValue(),", "+comboBoxProvince.getValue());
+            String date = comboBoxyear.getValue()+"-"+comboBoxmonth.getValue()+"-"+comboBoxday.getValue();
+            String time = comboBoxHour.getValue()+":"+comboBoxMins.getValue()+":00";
+            advertisementController.AddEvent((SportType) comboBoxSport.getValue(),l, date, time, (Role)comboBoxRole.getValue(), (Periodicity)comboBoxPeriodicity.getValue(), (int)comboBoxAgeMin.getValue(), (int)comboBoxAgeMax.getValue(),(user.Level) comboBoxLevel.getValue(), (Sex)comboBoxSex.getValue());
             window.close();
         });
 
-        VBox layout = new VBox(50);
-        layout.getChildren().addAll(grid,area,create);
 
-        Scene scene= new Scene(layout,500,500);
+        grid.getChildren().addAll(sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,timeLabel,comboBoxHour,comboBoxMins, dataLabel,comboBoxday,comboBoxmonth, comboBoxyear, locationLabel, comboBoxRegion, comboBoxProvince, cityInput, addressInput, periodicityLabel, comboBoxPeriodicity, AgeLabel, comboBoxAgeMin, comboBoxAgeMax, SexLabel, comboBoxSex, create);
+
+
+
+        VBox layout = new VBox(50);
+        layout.getChildren().addAll(grid);
+
+        Scene scene= new Scene(layout,750,360);
         window.setScene(scene);
         window.show();
 
