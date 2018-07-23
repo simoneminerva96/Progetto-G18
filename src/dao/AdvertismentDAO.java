@@ -20,6 +20,7 @@ public class AdvertismentDAO {
 
         ArrayList<Integer> eventSelected = new ArrayList<>();
 
+
         Connection con = null;
 
         try {
@@ -46,6 +47,7 @@ public class AdvertismentDAO {
                     }
                     eventSelected.add(res.getInt("COD"));
 
+
                 }
             }
             else {
@@ -62,6 +64,56 @@ public class AdvertismentDAO {
 
         return eventSelected;
     }
+
+    public static ArrayList<String> ShowEvent (SportType sport, Level level, Periodicity periodicity) {
+        UserController userController = c;
+        User u = userController.getUser();
+
+        ArrayList<String> ShowEvents = new ArrayList<>();
+
+        Connection con = null;
+
+        try {
+            String connectionString = "jdbc:mysql://localhost:3306/selection?user=root&password=qazxswedc4321@";
+            Class.forName("com.mysql.jdbc.Driver");
+            con = getConnection(connectionString);
+            Statement stm = con.createStatement();
+
+            ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+u.sex+"' AND AGE_MIN <= '"+u.age+"' AND AGE_MAX >= '"+u.age+"' AND PERIODICITY = '"+periodicity+"')");
+            if (res.next()) {
+               /*if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
+                   System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
+                }
+                else {
+                 System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                }*/
+                ShowEvents.add(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                while (res.next()) {
+                    /*if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
+                        System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
+                    }
+                    else {
+                        System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                    }*/
+                    ShowEvents.add(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+
+                }
+            }
+            else {
+                System.out.println("Event not found");
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
+        }
+
+
+
+        return ShowEvents;
+    }
+
 
 
 
