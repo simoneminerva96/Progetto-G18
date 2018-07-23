@@ -10,6 +10,7 @@ import user.Sex;
 import user.SportType;
 
 
+
 public class AdvertisementController {
     public SportType sport;
     public Sex sex;
@@ -31,8 +32,13 @@ public class AdvertisementController {
     }
 
     public static void ShowAdvertisments(SportType sport, Level level, Periodicity periodicity){
-        Advertisment.showEvents(sport, level, periodicity);
+       Advertisment.showEvents(sport, level, periodicity);
 
+    }
+
+
+    public static void SelectEvent(int cod){
+        Advertisment.selectEvent(cod);
     }
 
 
