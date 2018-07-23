@@ -1,21 +1,17 @@
 package user;
 
 import dao.*;
-import advertisment.*;
 
-import java.sql.*;
-import java.util.ArrayList;
-import static java.sql.DriverManager.getConnection;
+
 
 public class User {
     private String userName;
     private String password;
     private String nameP;
     private String surname;
-    private Sex sex;
-    private int age;
+    public static Sex sex;
+    public static int age;
     private boolean loggedIn;
-    private ArrayList<Integer> eventSelected;
 
     public User(String userName, String password, String nameP, String surname, Sex sex, int age){
         this.userName = userName;
@@ -25,26 +21,16 @@ public class User {
         this.sex = sex;
         this.age = age;
         loggedIn = false;
-        this.eventSelected = new ArrayList<>();
     }
-
-
-
-
 
     public int getAge() {
+
         return age;
     }
-
-
-
-
 
     public Sex getSex() {
         return sex;
     }
-
-
 
     public String getUserName() {
         return userName;
@@ -58,6 +44,10 @@ public class User {
     public String getSurname() {
         return surname;
     }
+
+
+
+
 
     public boolean signUp() {
 
@@ -86,7 +76,7 @@ public class User {
         if (UserDAO.checkUser(userName) == false) {
             if (UserDAO.getPassword(userName).equals(password)) {
                 loggedIn = true;
-                System.out.println("Login succesffull");
+                System.out.println("Login successful");
             }
             else  {
                 System.out.println("Incorrect username or password");
@@ -101,14 +91,11 @@ public class User {
 
 
 
-
-
-
-    public boolean deleteProfile (String userName) {
+    public boolean deleteProfile(String userName) {
         boolean r = false;
         if (UserDAO.deleteUser(userName) == true) {
-            System.out.println("User deleted successfully");
-            r = true;
+                        System.out.println("User deleted successfully");
+                        r = true;
         }
         else {
             System.out.println("An error occurred during deleting");
@@ -125,86 +112,10 @@ public class User {
     public boolean logOut() {
         if (loggedIn == true) {
             loggedIn = false;
-            System.out.println("Logout successfull");
+            System.out.println("Logout successful");
         }
         return loggedIn;
     }
-
-
-
-
-
-
-    public boolean showEvents (SportType sport, Level level, Periodicity periodicity)  {
-
-
-        boolean r = false;
-
-        if (loggedIn == true) {
-            eventSelected.addAll(AdvertismentDAO.getAdvertisment(sport, level, periodicity, getAge(), sex));
-            if (eventSelected.isEmpty()) {
-                r = false;
-            }
-            else {
-                r = true;
-            }
-        }
-        return r;
-    }
-
-
-
-
-
-
-
-
-    public boolean selectEvent(int cod)  {
-        boolean r = false;
-
-
-        if (eventSelected.isEmpty()) {
-            System.out.println("Error: no events showed");
-        }
-        else {
-            if (eventSelected.contains(cod)) {
-                r = true;
-                System.out.println("Event selected: " + cod);
-                eventSelected.clear();
-                AdvertismentDAO.deleteAdvertisment(cod);
-            }
-            else {
-                System.out.println("Event does not exist or can't be chosed");
-            }
-        }
-
-        return r;
-    }
-
-
-
-
-
-    public boolean addEvent (Advertisment advertisment) {
-        boolean r = false;
-
-
-        if (advertisment.checkDate() == true) {
-
-            if (loggedIn == true) {
-
-                r = AdvertismentDAO.addAdvertisment(advertisment);
-            }
-            else {
-                System.out.println("Error: you are not logged in");
-            }
-        }
-
-        return r;
-    }
-
-
-
 
 
 
