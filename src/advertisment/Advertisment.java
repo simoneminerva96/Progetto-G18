@@ -1,16 +1,16 @@
 package advertisment;
 
+import dao.AdvertismentDAO;
 import user.Level;
 import user.Sex;
 import user.SportType;
-
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 
 public class Advertisment {
     private SportType sport;
-    private Sex sex;
+    private static Sex sex;
     private Level level;
     private Location location;
     private Role role;
@@ -19,6 +19,8 @@ public class Advertisment {
     private String time;
     private int ageMin;
     private int ageMax;
+    private static ArrayList<Integer> eventSelected;
+
 
     public Advertisment (SportType sport, Location location, String date, String time, Role role, Periodicity periodicity, int ageMin, int ageMax, Level level, Sex sex) {
         this.sport = sport;
@@ -31,6 +33,7 @@ public class Advertisment {
         this.ageMax = ageMax;
         this.level = level;
         this.sex = sex;
+        this.eventSelected = new ArrayList<>();
     }
 
 
@@ -139,6 +142,69 @@ public class Advertisment {
     public  Periodicity getPeriodicity() {
         return periodicity;
     }
+
+
+
+
+    public boolean addEvent (Advertisment advertisment) {
+        boolean r = false;
+
+
+        if (advertisment.checkDate() == true) {
+
+                r = AdvertismentDAO.addAdvertisment(advertisment);
+        }
+
+        return r;
+    }
+
+
+
+
+
+
+
+
+
+    public static boolean showEvents(SportType sport, Level level, Periodicity periodicity)  {
+
+        boolean r = false;
+
+            eventSelected.addAll(AdvertismentDAO.getAdvertisment(sport, level, periodicity));
+            if (eventSelected.isEmpty()) {
+                r = false;
+            }
+            else {
+                r = true;
+            }
+
+        return r;
+    }
+
+
+
+    public static boolean selectEvent(int cod)  {
+        boolean r = false;
+
+
+        if (eventSelected.isEmpty()) {
+            System.out.println("Error: no events showed");
+        }
+        else {
+            if (eventSelected.contains(cod)) {
+                r = true;
+                System.out.println("Event selected: " + cod);
+                eventSelected.clear();
+                AdvertismentDAO.deleteAdvertisment(cod);
+            }
+            else {
+                System.out.println("Event does not exist or can't be chosen");
+            }
+        }
+
+        return r;
+    }
+
 
 
 }
