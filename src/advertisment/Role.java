@@ -1,5 +1,5 @@
 package advertisment;
 
 public enum Role {
-    PORTIERE, GIOCATORE, PALLEGGIATORE, NONE;
+    PORTIERE, PLAYER, PALLEGGIATORE, NONE
 }
