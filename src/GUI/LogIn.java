@@ -20,7 +20,7 @@ public class LogIn {
 
     public static void display(String title){
         Stage window= new Stage();
-        window.setTitle("Log In");
+        window.setTitle("LogIn");
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10,10,10,10));
         grid.setVgap(8);
@@ -49,7 +49,7 @@ public class LogIn {
         passInput.setPromptText("Password");
         GridPane.setConstraints(passInput,1,3);
 
-        Button logInButton = new Button("Log In");
+        Button logInButton = new Button("LogIn");
         GridPane.setConstraints(logInButton, 1,4);
         logInButton.setOnAction(event -> {
 
@@ -57,7 +57,7 @@ public class LogIn {
             Profile.setController(userController);
             window.close();
             if(userController.logIn(nameInput.getText(),passInput.getText()) == true) {
-                HomePage.display("Home Page");
+                HomePage.display("HomePage");
 
             }else if (userController.logIn(nameInput.getText(), passInput.getText()) == false){
                 ErrorInLogIn.display("Error!");

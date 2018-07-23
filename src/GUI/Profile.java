@@ -40,6 +40,7 @@ public class Profile {
         Label name= new Label("Name: ");
         GridPane.setConstraints(name,0,0);
 
+
         Label nameField= new Label(u.getNameP());
         GridPane.setConstraints(nameField,1,0);
 
@@ -73,15 +74,15 @@ public class Profile {
         GridPane.setConstraints(closeProfile,1,5);
 
         closeProfile.setOnAction(event -> {
-            HomePage.display("Home Page");
             window.close();
+            HomePage.display("Home Page");
         });
 
         Button logOut= new Button("Log Out");
         GridPane.setConstraints(logOut,2,5);
 
         logOut.setOnAction(event -> {
-            LogIn.display("GUI.LogIn");
+            LogIn.display("LogIn");
             window.close();
         });
 
@@ -90,7 +91,7 @@ public class Profile {
         Delete.setOnAction(event -> {
 
             userController.DeleteProfile(u.getUserName());
-            SignUp.display("GUI.SignUp");
+            SignUp.display("SignUp");
             window.close();
         });
 

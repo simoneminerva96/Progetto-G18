@@ -38,11 +38,11 @@ public class SignUp {
         Text welcomeText= new Text("If you dont't have an account,\n please sign up!");
         welcomeText.setFont(Font.font("Ariel", FontWeight.LIGHT, 20));
         GridPane.setConstraints(welcomeText,0,0);
-        //userame Label
+        //username Label
         Label nameLabel = new Label("Username:");
         GridPane.setConstraints(nameLabel,0,2);
 
-        //userame Input
+        //username Input
         TextField nameInput = new TextField();
         nameInput.setPromptText("Username");
         GridPane.setConstraints(nameInput,1,2);
@@ -93,6 +93,7 @@ public class SignUp {
                 23,
                 24,
                 25,
+                25,
                 26,
                 27,
                 28,
@@ -138,10 +139,12 @@ public class SignUp {
                 68,
                 69,
                 70
+
         );
         ComboBox ageField = new ComboBox(ageList);
         ageField.setPromptText("Age");
         GridPane.setConstraints(ageField,1,6);
+
 
 
         //Sex label

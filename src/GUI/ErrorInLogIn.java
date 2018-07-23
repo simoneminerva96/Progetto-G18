@@ -11,8 +11,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-
 
 public class ErrorInLogIn {
     static boolean answer;
@@ -28,19 +26,19 @@ public class ErrorInLogIn {
         Text errorMessage= new Text("Error in username or password!");
         errorMessage.setFont(Font.font("Arial", FontWeight.BOLD,10));
 
-        Button returnLog = new Button("return to Log In");
+        Button returnLog = new Button("Return to Log In");
         Button signUp = new Button("Close All and Sign Up");
 
 
         returnLog.setOnAction(event -> {
             answer = true;
-            LogIn.display("Log In");
+            LogIn.display("LogIn");
             window.close();
         });
 
         signUp.setOnAction(event -> {
             answer = false;
-                SignUp.display("SignUp");
+            SignUp.display("SignUp");
             window.close();
         });
 
