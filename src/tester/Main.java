@@ -16,24 +16,21 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import user.Sex;
+import user.User;
 
 import java.sql.SQLException;
 
 public class Main extends Application{
 
 
-    Stage window;;
+    Stage window;
 
     public static void main(String [] args){
         launch(args);
     }
 
+
     private UserController userController = new UserController();
-
-
-
-
-
 
 
     @Override
@@ -41,6 +38,10 @@ public class Main extends Application{
         UserController c = new UserController();
 
         window= primaryStage;
+        primaryStage.setTitle("SignUp");
+
+
+
 
 
         GridPane grid = new GridPane();
@@ -48,14 +49,14 @@ public class Main extends Application{
         grid.setVgap(8);
         grid.setHgap(10);
 
-        Text welcomeText= new Text("If you dont't have an account,\n please sign up!");
+        Text welcomeText= new Text("If you dont't have an account,\nplease sign up!");
         welcomeText.setFont(Font.font("Ariel", FontWeight.LIGHT, 20));
         GridPane.setConstraints(welcomeText,0,0);
-        //userame Label
+        //username Label
         Label nameLabel = new Label("Username:");
         GridPane.setConstraints(nameLabel,0,2);
 
-        //userame Input
+        //username Input
         TextField nameInput = new TextField();
         nameInput.setPromptText("Username");
         GridPane.setConstraints(nameInput,1,2);
@@ -66,7 +67,7 @@ public class Main extends Application{
 
         //Pass Input
         PasswordField passInput= new PasswordField();
-        passInput.setPromptText("password");
+        passInput.setPromptText("Password");
         GridPane.setConstraints(passInput,1,3);
 
         //Name Label
@@ -106,6 +107,7 @@ public class Main extends Application{
                 22,
                 23,
                 24,
+                25,
                 25,
                 26,
                 27,
@@ -152,9 +154,14 @@ public class Main extends Application{
                 68,
                 69,
                 70
+
         );
         ComboBox ageField = new ComboBox(ageList);
+        ageField.setPromptText("Age");
         GridPane.setConstraints(ageField,1,6);
+
+
+
 
         //Sex label
         Label sexLabel= new Label("Sex:");
@@ -170,19 +177,20 @@ public class Main extends Application{
         comboBoxsex.setPromptText("Choose text");
         GridPane.setConstraints(comboBoxsex,1,7);
 
-        Button SignUpButton = new Button("Sign Up");
+        Button SignUpButton = new Button("SignUp");
         GridPane.setConstraints(SignUpButton,1,8);
         SignUpButton.setOnAction(event -> {
 
             userController.signUp(nameInput.getText(),passInput.getText(), namevInput.getText(), surnameInput.getText(), (Sex) comboBoxsex.getValue(),(int) ageField.getValue());
-            LogIn.display("Log In");
+            LogIn.display("LogIn");
             window.close();
+
         });
 
-        Button logInButton =new Button("Log In");
+        Button logInButton = new Button("LogIn");
         GridPane.setConstraints(logInButton,2,8);
         logInButton.setOnAction(event -> {
-            LogIn.display("Log In");
+            LogIn.display("LogIn");
             window.close();
         });
 
@@ -190,7 +198,7 @@ public class Main extends Application{
         grid.getChildren().addAll(welcomeText,nameLabel, nameInput, passLable,passInput, namevLabel, namevInput,surnameLabel, surnameInput, birthdayLabel, ageField, sexLabel, comboBoxsex, SignUpButton, logInButton);
 
 
-        Scene scene= new Scene(grid,700,500);
+        Scene scene= new Scene(grid,600,500);
         window.setScene(scene);
 
 
