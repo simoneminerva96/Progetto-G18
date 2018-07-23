@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import user.Level;
 import user.SportType;
 
+import java.util.ArrayList;
 
 
 public class HomePage {
@@ -89,7 +90,7 @@ public class HomePage {
         ComboBox comboBoxPeriodicity = new ComboBox(period);
         comboBoxPeriodicity.setPromptText("Choose periodicity");
 
-        ListView <String> advArea = new ListView<>();
+        ListView <String> list = new ListView<>();
 
 
 
@@ -98,8 +99,8 @@ public class HomePage {
         searchButton.setOnAction(event -> {
             AdvertisementController advertisementController = new AdvertisementController();
             advertisementController.ShowAdvertisments((SportType) comboBoxSport.getValue(), (user.Level) comboBoxLevel.getValue(), (Periodicity) comboBoxPeriodicity.getValue());
-//            ObservableList<String> viewAdvs =FXCollections.observableArrayList (advertisementController.ShowAdvertisments((SportType) comboBoxSport.getValue(), (user.Level) comboBoxLevel.getValue(), (Periodicity) comboBoxPeriodicity.getValue()));
-//            advArea.setItems(viewAdvs);
+            ObservableList<String> viewAdvs =FXCollections.observableArrayList (AdvertismentDAO.ShowEvent((SportType) comboBoxSport.getValue(), (user.Level) comboBoxLevel.getValue(), (Periodicity) comboBoxPeriodicity.getValue()));
+            list.setItems(viewAdvs);
         });
 
 
@@ -112,7 +113,6 @@ public class HomePage {
 
 
 */
-
 
         Button newAdvertisement = new Button("New Advertisement");
         newAdvertisement.setOnAction(event -> NewAdvertisement.display("New Advertisement"));
@@ -142,7 +142,7 @@ public class HomePage {
         BorderPane borderPane= new BorderPane();
         borderPane.setTop(hbox);
         borderPane.setBottom(vBox);
-        borderPane.setCenter(advArea);
+        borderPane.setCenter(list);
 
 
         StackPane layout = new StackPane();
