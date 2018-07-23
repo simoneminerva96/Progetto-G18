@@ -1,12 +1,9 @@
 package dao;
 
-import advertisment.Periodicity;
 import user.*;
 import java.sql.*;
-import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
-import static java.sql.DriverManager.println;
 
 public class UserDAO {
 

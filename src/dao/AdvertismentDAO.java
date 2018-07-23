@@ -239,7 +239,6 @@ public class AdvertismentDAO {
             System.out.println(c.getMessage());
         }
 
-
         return r;
     }
 }
