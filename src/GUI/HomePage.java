@@ -4,11 +4,11 @@ package GUI;
 import Controller.AdvertisementController;
 import advertisment.Advertisment;
 import advertisment.Periodicity;
+import dao.AdvertismentDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -23,9 +23,10 @@ import user.Level;
 import user.SportType;
 
 
+
 public class HomePage {
 
-    public static void display(String title){
+        public static void display(String title){
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -38,9 +39,9 @@ public class HomePage {
         hbox.setSpacing(10);
         hbox.setStyle("-fx-background-color: Blue;");
 
-        HBox periodicity= new HBox();
-        hbox.setPadding(new Insets(15, 12, 15, 12));
-        hbox.setSpacing (50);
+        HBox hhbox= new HBox();
+        hhbox.setPadding(new Insets(15, 12, 15, 12));
+        hhbox.setSpacing (50);
 
 
         VBox vBox= new VBox();
@@ -89,9 +90,7 @@ public class HomePage {
         comboBoxPeriodicity.setPromptText("Choose periodicity");
 
         ListView <String> advArea = new ListView<>();
-        ObservableList<String> viewAdvs =FXCollections.observableArrayList (
-        );
-        advArea.setItems(viewAdvs);
+
 
 
 
@@ -99,7 +98,20 @@ public class HomePage {
         searchButton.setOnAction(event -> {
             AdvertisementController advertisementController = new AdvertisementController();
             advertisementController.ShowAdvertisments((SportType) comboBoxSport.getValue(), (user.Level) comboBoxLevel.getValue(), (Periodicity) comboBoxPeriodicity.getValue());
+//            ObservableList<String> viewAdvs =FXCollections.observableArrayList (advertisementController.ShowAdvertisments((SportType) comboBoxSport.getValue(), (user.Level) comboBoxLevel.getValue(), (Periodicity) comboBoxPeriodicity.getValue()));
+//            advArea.setItems(viewAdvs);
         });
+
+
+/*
+
+
+        if (me.getClickCount() == 2) {
+            System.out.println("OK");
+        }
+
+
+*/
 
 
         Button newAdvertisement = new Button("New Advertisement");
