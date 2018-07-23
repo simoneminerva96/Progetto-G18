@@ -3,17 +3,20 @@ package dao;
 import java.sql.*;
 import java.util.ArrayList;
 
-
+import Controller.UserController;
 import user.*;
 import advertisment.*;
 
+import static GUI.Profile.c;
 import static java.sql.DriverManager.getConnection;
+
 
 public class AdvertismentDAO {
 
 
-    public static ArrayList<Integer> getAdvertisment (SportType sport, Level level, Periodicity periodicity, int age, Sex sex) {
-
+    public static ArrayList<Integer> getAdvertisment (SportType sport, Level level, Periodicity periodicity) {
+        UserController userController = c;
+        User u = userController.getUser();
 
         ArrayList<Integer> eventSelected = new ArrayList<>();
 
@@ -25,7 +28,7 @@ public class AdvertismentDAO {
             con = getConnection(connectionString);
             Statement stm = con.createStatement();
 
-            ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+sex+"' AND AGE_MIN <= '"+age+"' AND AGE_MAX >= '"+age+"' AND PERIODICITY = '"+periodicity+"')");
+            ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+u.sex+"' AND AGE_MIN <= '"+u.age+"' AND AGE_MAX >= '"+u.age+"' AND PERIODICITY = '"+periodicity+"')");
             if (res.next()) {
                 if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
                     System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
