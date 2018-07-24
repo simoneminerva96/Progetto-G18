@@ -1,5 +1,9 @@
 package advertisment;
 
+
+/**
+ * This class create the object location for the advertisment
+ */
 public class Location {
     private String region;
     private String city;

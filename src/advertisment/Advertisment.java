@@ -7,7 +7,9 @@ import user.SportType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
+/**
+ * This claas create the object advertisment and contains all the advertiment's method
+ */
 public class Advertisment {
     private SportType sport;
     private static Sex sex;
@@ -39,7 +41,7 @@ public class Advertisment {
 
 
 
-    //the method controlls if the selected date is valid: a date in the past can't be selected.
+    //he method controlls if the selected date is valid: a date in the past can't be selected.
     public boolean checkDate () {
         boolean r = false;
         java.sql.Date d = java.sql.Date.valueOf(LocalDate.now());
