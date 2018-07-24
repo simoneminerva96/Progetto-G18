@@ -11,10 +11,15 @@ import advertisment.*;
 import static GUI.Profile.c;
 import static java.sql.DriverManager.getConnection;
 
+/**
+ * Class that connect Advertisment method's to DB
+ */
 
 public class AdvertismentDAO {
 
-    //The methods return the ArrayList of the codes of the filtered events
+
+
+
     public static ArrayList<Integer> getAdvertisment (SportType sport, Level level, Periodicity periodicity) {
         UserController userController = c;
         User u = userController.getUser();
@@ -69,7 +74,10 @@ public class AdvertismentDAO {
         return eventSelected;
     }
 
-    //The methods returns the ArrayList of the filtered event
+
+
+
+
     public static ArrayList<String> ShowEvent (SportType sport, Level level, Periodicity periodicity) {
         UserController userController = c;
         User u = userController.getUser();
@@ -115,8 +123,6 @@ public class AdvertismentDAO {
 
 
 
-
-
     public static boolean checkAdvertisment (int cod) {
         boolean r = false;
         Connection con = null;
@@ -148,7 +154,6 @@ public class AdvertismentDAO {
 
 
 
-    //The method deletes an advertisement when someone subscribes it
     public static boolean deleteAdvertisment (int cod) {
         boolean r = false;
 
@@ -185,7 +190,8 @@ public class AdvertismentDAO {
 
 
 
-    //The methods create a new code for the advertisement
+
+
     public static int checkCod()  {
         int newCod = 0;
 
@@ -221,7 +227,7 @@ public class AdvertismentDAO {
 
 
 
-    //The methods allow to check the correct update of an advertisement
+
     public static boolean addAdvertisment(Advertisment advertisment) {
         boolean r = false;
 
