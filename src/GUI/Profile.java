@@ -37,6 +37,7 @@ public class Profile {
 
         User u = userController.getUser();
 
+        //the profile show user's data
         Label name= new Label("Name: ");
         GridPane.setConstraints(name,0,0);
 
@@ -69,7 +70,7 @@ public class Profile {
         GridPane.setConstraints(sexField,1,4);
 
 
-
+        //this button allows to return to the home page
         Button closeProfile= new Button("Close");
         GridPane.setConstraints(closeProfile,1,5);
 
@@ -78,6 +79,7 @@ public class Profile {
             HomePage.display("Home Page");
         });
 
+        //this button allows to log out
         Button logOut= new Button("Log Out");
         GridPane.setConstraints(logOut,2,5);
 
@@ -86,6 +88,7 @@ public class Profile {
             window.close();
         });
 
+        //this button allows to delete the prifile
         Button Delete = new Button("Delete Profile");
         GridPane.setConstraints(Delete, 3, 5);
         Delete.setOnAction(event -> {

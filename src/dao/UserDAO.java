@@ -7,7 +7,7 @@ import static java.sql.DriverManager.getConnection;
 
 public class UserDAO {
 
-
+    //the methods return if an account already exist
     public static boolean checkUser(String userName)  {
         boolean r = false;
         Connection con = null;
@@ -39,7 +39,7 @@ public class UserDAO {
 
 
 
-
+    //the methods allows to create a new user
     public static boolean addUser(String userName, String password, String name, String surname, Sex sex, int age) {
         boolean r = false;
         Connection con = null;
@@ -93,7 +93,7 @@ public class UserDAO {
 
     }
 
-
+    //the methods allows to delete an user
     public static boolean deleteUser (String userName) {
         boolean r = false;
         Connection con = null;

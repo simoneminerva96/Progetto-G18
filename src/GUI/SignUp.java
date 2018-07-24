@@ -161,6 +161,7 @@ public class SignUp {
         comboBoxsex.setPromptText("Choose sex");
         GridPane.setConstraints(comboBoxsex,1,7);
 
+        //this button allows sign up
         Button SignUpButton = new Button("Sign Up");
         GridPane.setConstraints(SignUpButton,1,8);
         SignUpButton.setOnAction(event -> {
@@ -170,6 +171,7 @@ public class SignUp {
             window.close();
         });
 
+        // this button allows to go to log in (if your account already exist)
         Button logInButton =new Button("Log In");
         GridPane.setConstraints(logInButton,2,8);
         logInButton.setOnAction(event -> {

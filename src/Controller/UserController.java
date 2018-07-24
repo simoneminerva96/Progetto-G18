@@ -13,12 +13,14 @@ public class UserController {
     public UserDAO u = new UserDAO();
     public User user = new User(userName, password, name, surname, sex, age);
 
+    //the method allows sign up.
     public User signUp(String userName, String password, String nameP, String surname, Sex sex, int age){
         user = new User(userName, password, nameP, surname, sex, age);
         user.signUp();
         return user;
     }
 
+    //the method allwos log in
     public boolean logIn(String userName, String password) {
         boolean r = false;
         r = user.logIn( userName, password);
@@ -34,6 +36,7 @@ public class UserController {
         return u.getUser(userName1);
     }
 
+    //the method allows to delete the profile
     public void DeleteProfile(String userName){
           user.deleteProfile(userName);
     }

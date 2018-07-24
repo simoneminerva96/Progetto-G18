@@ -30,33 +30,37 @@ import java.util.StringTokenizer;
 public class HomePage {
 
         public static void display(String title){
+
+            //window creation
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinHeight(250);
 
-
+        //create a vertical box
         HBox hbox = new HBox();
         hbox.setPadding(new Insets(15, 12, 15, 12));
         hbox.setSpacing(10);
         hbox.setStyle("-fx-background-color: LightBlue;");
 
+        //create an horizontal box
         HBox hhbox= new HBox();
         hhbox.setPadding(new Insets(15, 12, 15, 12));
         hhbox.setSpacing (50);
 
-
+        //create a vertical box
         VBox vBox= new VBox();
         vBox.setPadding(new Insets(15,12,15,12));
         vBox.setSpacing(10);
         vBox.setAlignment(Pos.BOTTOM_LEFT);
 
-
+        //add a text
         Text text= new Text("Filtra");
         text.setFont(Font.font("Arial", FontWeight.BOLD,14));
 
 
+        //create a sport filter comboBox
         Label sportLabel= new Label("Sport:");
         ObservableList <SportType> sportList= FXCollections.observableArrayList(
                 SportType.CALCETTO,
@@ -69,6 +73,7 @@ public class HomePage {
 
 
 
+        //create a level filter comboBox
         Label levelLabel = new Label("Level:");
         ObservableList<Level>level= FXCollections.observableArrayList(
                 Level.LOW,
@@ -80,7 +85,7 @@ public class HomePage {
         comboBoxLevel.setPromptText("Choose level");
         GridPane.setConstraints(comboBoxLevel, 0,5);
 
-        //Periodicity Label
+        //create a periodicity filter comboBox
         Label periodicityLabel= new Label("Periodicity:");
 
         ObservableList <Periodicity> period = FXCollections.observableArrayList(
@@ -92,11 +97,10 @@ public class HomePage {
         ComboBox comboBoxPeriodicity = new ComboBox(period);
         comboBoxPeriodicity.setPromptText("Choose periodicity");
 
+        //create the window that shows filtered events
         ListView <String> list = new ListView<>();
 
-
-
-
+        //create the button that allows to applay a filter
         Button searchButton= new Button("Search");
         searchButton.setOnAction(event -> {
             AdvertisementController advertisementController = new AdvertisementController();
@@ -105,6 +109,7 @@ public class HomePage {
             list.setItems(viewAdvs);
         });
 
+        //allows to subscribe an event with a double click
         list.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -142,11 +147,12 @@ public class HomePage {
 
 
 
-
+        //create the button that opens a new advertisement window
         Button newAdvertisement = new Button("New Advertisement");
         newAdvertisement.setOnAction(event -> NewAdvertisement.display("New Advertisement"));
         newAdvertisement.setPrefSize(150,20);
 
+        //create the button that opens the profile
         Button profileButton = new Button("Profile");
         profileButton.setOnAction(event -> {
             Profile.display("Profile");
@@ -154,6 +160,7 @@ public class HomePage {
         });
         profileButton.setPrefSize(100,20);
 
+        //create the button that makes log out
         Button logOut= new Button("Log Out");
         logOut.setOnAction(event -> {
             window.close();
@@ -164,7 +171,7 @@ public class HomePage {
 
 
 
-
+        //add to Vbox and Hbox the elements
         hbox.getChildren().addAll(newAdvertisement,profileButton,logOut);
         vBox.getChildren().addAll(text,sportLabel,comboBoxSport,levelLabel,comboBoxLevel, periodicityLabel, comboBoxPeriodicity,searchButton);
 

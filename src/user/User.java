@@ -48,7 +48,7 @@ public class User {
 
 
 
-
+    //this method allows the sign up
     public boolean signUp() {
 
         boolean r = false;
@@ -69,9 +69,7 @@ public class User {
     }
 
 
-
-
-
+    //this methods check if the log in is correct or not
     public boolean logIn(String userName, String password) {
         if (UserDAO.checkUser(userName) == false) {
             if (UserDAO.getPassword(userName).equals(password)) {
@@ -90,7 +88,7 @@ public class User {
     }
 
 
-
+    //this methods allows to delete an account
     public boolean deleteProfile(String userName) {
         boolean r = false;
         if (UserDAO.deleteUser(userName) == true) {
@@ -105,10 +103,7 @@ public class User {
 
 
 
-
-
-
-
+    //this method allows to log out
     public boolean logOut() {
         if (loggedIn == true) {
             loggedIn = false;

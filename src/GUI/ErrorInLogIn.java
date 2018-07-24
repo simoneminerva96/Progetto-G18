@@ -16,20 +16,26 @@ public class ErrorInLogIn {
     static boolean answer;
 
     public static boolean display(String title){
+
+        //window creation
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinHeight(250);
 
+        //message
         Label label = new Label();
         Text errorMessage= new Text("Error in username or password!");
         errorMessage.setFont(Font.font("Arial", FontWeight.BOLD,10));
 
+        //button creation
         Button returnLog = new Button("Return to Log In");
         Button signUp = new Button("Close All and Sign Up");
 
 
+        /*the ActionListener go to log in if you click returnLog button, go to sign up if you click
+        signUp button*/
         returnLog.setOnAction(event -> {
             answer = true;
             LogIn.display("LogIn");
@@ -42,6 +48,7 @@ public class ErrorInLogIn {
             window.close();
         });
 
+        //the elements are on a vertical box
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(errorMessage,label, returnLog, signUp);

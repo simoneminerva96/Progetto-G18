@@ -28,12 +28,13 @@ public class NewAdvertisement {
         window.setTitle(title);
         window.setMinHeight(250);
 
+        //grid creation
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(15,15,15,15));
         grid.setVgap(8);
         grid.setHgap(10);
 
-        //Sport Label
+        //creation of sport combo box
         Label sportLabel = new Label("Sport:");
         GridPane.setConstraints(sportLabel,0,0);
 
@@ -48,7 +49,7 @@ public class NewAdvertisement {
         GridPane.setConstraints(comboBoxSport,1,0);
 
 
-
+        //creation of "calcetto" roles combo box
         Label roleLabel = new Label("Role:");
         GridPane.setConstraints(roleLabel,0,1);
 
@@ -58,16 +59,18 @@ public class NewAdvertisement {
         );
 
 
-
+        //creation of "pallavolo" roles combo box
         ObservableList <Role> pallavoloList = FXCollections.observableArrayList(
                 Role.PLAYER,
                 Role.PALLEGGIATORE
         );
 
+        //creation of "tennis" roles combo box
         ObservableList <Role> tennisList = FXCollections.observableArrayList(
                 Role.NONE
         );
 
+        //creation of "basket" roles combo box
         ObservableList <Role> basketList = FXCollections.observableArrayList(
                 Role.NONE
         );
@@ -76,6 +79,7 @@ public class NewAdvertisement {
         final ComboBox comboBoxRole= new ComboBox();
         GridPane.setConstraints(comboBoxRole,1,1);
 
+        //it allows to select a role according to the choosen sport
         comboBoxSport.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
@@ -98,11 +102,10 @@ public class NewAdvertisement {
         comboBoxRole.setPromptText("Choose role");
 
 
-        //Level Label
+        //creation of level combobox
         Label levelLabel = new Label("Level:");
         GridPane.setConstraints(levelLabel,0,2);
 
-        //Level Input
         ObservableList<Level> level = FXCollections.observableArrayList(
                 Level.LOW,
                 Level.MEDIUM,
@@ -112,11 +115,11 @@ public class NewAdvertisement {
         comboBoxLevel.setPromptText("Choose level");
         GridPane.setConstraints(comboBoxLevel,1,2);
 
-        //Time Label
+        //creation of times combobox
         Label timeLabel = new Label("Time:");
         GridPane.setConstraints(timeLabel,0,3);
 
-        //Hour Input
+
         ObservableList<String> hour= FXCollections.observableArrayList(
                 "00",
                 "01",
@@ -146,8 +149,6 @@ public class NewAdvertisement {
         ComboBox comboBoxHour = new ComboBox(hour);
         comboBoxHour.setPromptText("H.");
         GridPane.setConstraints(comboBoxHour,1,3);
-
-        //Input Mins
 
         ObservableList<String> mins=FXCollections.observableArrayList(
                 "00",
@@ -215,6 +216,7 @@ public class NewAdvertisement {
         comboBoxMins.setPromptText("M.");
         GridPane.setConstraints(comboBoxMins,2,3);
 
+        //create day's combobox
         Label dataLabel= new Label("Day of play:");
         GridPane.setConstraints(dataLabel,0,4);
 
@@ -292,6 +294,7 @@ public class NewAdvertisement {
         comboBoxyear.setPromptText("Y.");
         GridPane.setConstraints(comboBoxyear,3,4);
 
+        //creations of location's comboboxs and textfields
         Label locationLabel= new Label("Location:");
         GridPane.setConstraints(locationLabel,0,5);
 
@@ -464,11 +467,11 @@ public class NewAdvertisement {
 
 
 
-        //Age Label
+        //combobox agemin and agemax
         Label AgeLabel = new Label("Age:");
         GridPane.setConstraints(AgeLabel,0,6);
 
-        //AgeMin Input
+
         ObservableList<Integer> AgeMin= FXCollections.observableArrayList(
 
                 14,
@@ -484,7 +487,6 @@ public class NewAdvertisement {
         comboBoxAgeMin.setPromptText("Age Min");
         GridPane.setConstraints(comboBoxAgeMin,1,6);
 
-        //Input AgeMax
 
         ObservableList<Integer> AgeMax=FXCollections.observableArrayList(
                 14,
@@ -499,7 +501,7 @@ public class NewAdvertisement {
         comboBoxAgeMax.setPromptText("Age Max");
         GridPane.setConstraints(comboBoxAgeMax,2,6);
 
-        //Sex Label
+        //Sex combobox
         Label SexLabel = new Label("Sex:");
         GridPane.setConstraints(SexLabel,0,8);
 
@@ -514,7 +516,7 @@ public class NewAdvertisement {
 
 
 
-        //Periodicity Label
+        //Periodicity combobox
         Label periodicityLabel= new Label("Periodicity:");
         GridPane.setConstraints(periodicityLabel,0,7);
 
@@ -529,7 +531,7 @@ public class NewAdvertisement {
         GridPane.setConstraints(comboBoxPeriodicity,1,7);
 
 
-
+        //this buttons allows to create a new event
         Button create= new Button("Create");
         GridPane.setConstraints(create,0,10);
         create.setOnAction(event -> {
@@ -542,6 +544,7 @@ public class NewAdvertisement {
         });
 
 
+        //the elements are put in a grid
         grid.getChildren().addAll(sportLabel,comboBoxSport,roleLabel,comboBoxRole,levelLabel,comboBoxLevel,timeLabel,comboBoxHour,comboBoxMins, dataLabel,comboBoxday,comboBoxmonth, comboBoxyear, locationLabel, comboBoxRegion, comboBoxProvince, cityInput, addressInput, periodicityLabel, comboBoxPeriodicity, AgeLabel, comboBoxAgeMin, comboBoxAgeMax, SexLabel, comboBoxSex, create);
 
 

@@ -49,8 +49,11 @@ public class LogIn {
         passInput.setPromptText("Password");
         GridPane.setConstraints(passInput,1,3);
 
+        //grid creation
         Button logInButton = new Button("LogIn");
         GridPane.setConstraints(logInButton, 1,4);
+
+        //It makes log in and go to home page if user and passwors are correct and go to error in login if one of them is wrong
         logInButton.setOnAction(event -> {
 
             UserController userController = new UserController();
@@ -66,6 +69,7 @@ public class LogIn {
 
         });
 
+        //all elements are added to a grid
         grid.getChildren().addAll(welcomeText,nameLabel,nameInput,passLable,passInput,logInButton);
 
 

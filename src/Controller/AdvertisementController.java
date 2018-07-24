@@ -25,18 +25,20 @@ public class AdvertisementController {
 
     public Advertisment advertisment = new Advertisment(sport, location, date, time, role, periodicity, ageMin, ageMax, level, sex);
 
+    //the method allows to create a new advertisement.
     public Advertisment AddEvent(SportType sport1, Location location1, String date1, String time1, Role role1, Periodicity periodicity1, int ageMin1, int ageMax1, Level level1, Sex sex1){
         advertisment = new Advertisment(sport1, location1, date1, time1, role1, periodicity1, ageMin1, ageMax1, level1, sex1);
         advertisment.addEvent(advertisment);
         return advertisment;
     }
 
+    //the method allows to filter events
     public static void ShowAdvertisments(SportType sport, Level level, Periodicity periodicity){
        Advertisment.showEvents(sport, level, periodicity);
 
     }
 
-
+    //the method allows to selcet the choosen event
     public static void SelectEvent(int cod){
         Advertisment.selectEvent(cod);
     }
