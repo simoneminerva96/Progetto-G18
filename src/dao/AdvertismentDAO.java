@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Controller.UserController;
@@ -13,14 +14,14 @@ import static java.sql.DriverManager.getConnection;
 
 public class AdvertismentDAO {
 
-    //the methods return the ArrayList of the codes of the filtered events
+    //The methods return the ArrayList of the codes of the filtered events
     public static ArrayList<Integer> getAdvertisment (SportType sport, Level level, Periodicity periodicity) {
         UserController userController = c;
         User u = userController.getUser();
 
         ArrayList<Integer> eventSelected = new ArrayList<>();
 
-
+        java.sql.Date d = java.sql.Date.valueOf(LocalDate.now());
         Connection con = null;
 
         try {
@@ -31,14 +32,16 @@ public class AdvertismentDAO {
 
             ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+u.sex+"' AND AGE_MIN <= '"+u.age+"' AND AGE_MAX >= '"+u.age+"' AND PERIODICITY = '"+periodicity+"')");
             if (res.next()) {
-                if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
-                    System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
+                if(d.before(java.sql.Date.valueOf(res.getString("EVENT_DATE")))) {
+                    if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET")) {
+                        System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
+                    } else {
+                        System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                    }
+                    eventSelected.add(res.getInt("COD"));
                 }
-                else {
-                    System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
-                }
-                eventSelected.add(res.getInt("COD"));
                 while (res.next()) {
+
                     if (res.getString("SPORT").equals("TENNIS") || res.getString("SPORT").equals("BASKET") ) {
                         System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " +res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR"));
                     }
@@ -46,9 +49,10 @@ public class AdvertismentDAO {
                         System.out.println(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
                     }
                     eventSelected.add(res.getInt("COD"));
+                    }
 
 
-                }
+
             }
             else {
                 System.out.println("Event not found");
@@ -65,11 +69,11 @@ public class AdvertismentDAO {
         return eventSelected;
     }
 
-    //the methods returns the ArrayList of the filtered event
+    //The methods returns the ArrayList of the filtered event
     public static ArrayList<String> ShowEvent (SportType sport, Level level, Periodicity periodicity) {
         UserController userController = c;
         User u = userController.getUser();
-
+        java.sql.Date d = java.sql.Date.valueOf(LocalDate.now());
         ArrayList<String> ShowEvents = new ArrayList<>();
 
         Connection con = null;
@@ -82,10 +86,15 @@ public class AdvertismentDAO {
 
             ResultSet res = stm.executeQuery("SELECT * FROM ADVERTISMENT WHERE (SPORT = '"+sport+"' AND LEVEL_EVENT = '"+level+"' AND SEX = '"+u.sex+"' AND AGE_MIN <= '"+u.age+"' AND AGE_MAX >= '"+u.age+"' AND PERIODICITY = '"+periodicity+"')");
             if (res.next()) {
-                ShowEvents.add(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
-                while (res.next()) {
+                if(d.before(java.sql.Date.valueOf(res.getString("EVENT_DATE")))) {
                     ShowEvents.add(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
                 }
+                    while (res.next()) {
+                        if (d.before(java.sql.Date.valueOf(res.getString("EVENT_DATE")))) {
+                            ShowEvents.add(res.getString("COD") + ": " + res.getString("SPORT") + ", " + res.getString("LOCATION") + ", " + res.getString("EVENT_DATE") + ", " + res.getString("EVENT_HOUR") + ". Role required: " + res.getString("ROLE_REQUEST"));
+                        }
+                    }
+
             }
             else {
                 System.out.println("Event not found");
@@ -139,7 +148,7 @@ public class AdvertismentDAO {
 
 
 
-    //the method deletes an advertisement when someone subscribes it
+    //The method deletes an advertisement when someone subscribes it
     public static boolean deleteAdvertisment (int cod) {
         boolean r = false;
 
@@ -176,7 +185,7 @@ public class AdvertismentDAO {
 
 
 
-    //the methods create a new code for the advertisement
+    //The methods create a new code for the advertisement
     public static int checkCod()  {
         int newCod = 0;
 
@@ -212,7 +221,7 @@ public class AdvertismentDAO {
 
 
 
-    //the methods allow to check the correct update of an advertisement
+    //The methods allow to check the correct update of an advertisement
     public static boolean addAdvertisment(Advertisment advertisment) {
         boolean r = false;
 
