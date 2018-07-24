@@ -26,6 +26,12 @@ import user.SportType;
 
 import java.util.StringTokenizer;
 
+/**
+ * This class creates the window of the home page wher the user can filter the events,
+ * connects with the page of new advertisement's creation and with the profile and he can log out
+ * from his account.
+ */
+
 
 public class HomePage {
 

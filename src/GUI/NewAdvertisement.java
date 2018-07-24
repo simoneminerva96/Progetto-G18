@@ -19,7 +19,9 @@ import user.Level;
 import user.Sex;
 import user.SportType;
 
-
+/**
+ * This class opens a page where it's possible to create a new event filling the required fields.
+ */
 public class NewAdvertisement {
     public static void display(String title){
         Stage window = new Stage();

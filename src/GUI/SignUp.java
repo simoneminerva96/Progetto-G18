@@ -19,7 +19,9 @@ import user.Sex;
 import java.io.Serializable;
 import java.sql.SQLException;
 
-
+/**
+ * This class opens a window where the user can sign up filling the requierd fields.
+ */
 public class SignUp {
 
     public static void display(String title){

@@ -11,35 +11,32 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * This class generates a window that confirms the happened booking for an event.
+ */
 public class AdvBooking {
     static boolean answer;
 
     public static boolean display(String title){
         Stage window = new Stage();
 
-        //new window
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinHeight(250);
 
-        //message
         Label label = new Label();
         Text errorMessage= new Text("Booking successful!");
         errorMessage.setFont(Font.font("Arial", FontWeight.BOLD,10));
 
-        //button creation
         Button returnHome = new Button("Return to HomePage");
 
 
-        //the ActionListener return to the Home page
         returnHome.setOnAction(event -> {
 
             HomePage.display("Home Page");
             window.close();
         });
 
-
-        //the elements are in a vertical box
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(errorMessage,label, returnHome);

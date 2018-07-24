@@ -13,7 +13,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
-
+/**
+ * This class opens a window where the user can access whith his username and his password.
+ */
 public class LogIn {
 
 

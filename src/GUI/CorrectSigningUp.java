@@ -12,28 +12,31 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * This class opens a window that confirms the correct sign up to the application.
+ */
+
 public class CorrectSigningUp {
     static boolean answer;
 
     public static boolean display(String title){
 
-        //window creation
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinHeight(250);
 
-        //message creation
+
         Label label = new Label();
         Text successMessage= new Text("Successful registration!");
         successMessage.setFont(Font.font("Arial", FontWeight.BOLD,10));
 
-        //button creation
+
         Button Close = new Button("Close");
 
 
-        //the ActionListener return to Home page
+
         Close.setOnAction(event -> {
             answer = true;
             HomePage.display("HomePage");
@@ -41,7 +44,6 @@ public class CorrectSigningUp {
         });
 
 
-        //the elements are in a vertical box
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(successMessage,label, Close);
