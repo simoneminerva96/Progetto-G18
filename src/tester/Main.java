@@ -49,7 +49,7 @@ public class Main extends Application{
         grid.setVgap(8);
         grid.setHgap(10);
 
-        Text welcomeText= new Text("If you dont't have an account,\nplease sign up!");
+        Text welcomeText= new Text("If you don't have an account,\nplease sign up!");
         welcomeText.setFont(Font.font("Ariel", FontWeight.LIGHT, 20));
         GridPane.setConstraints(welcomeText,0,0);
         //username Label
@@ -89,7 +89,7 @@ public class Main extends Application{
         GridPane.setConstraints(surnameInput,1,5);
 
         //Birthday Label
-        Label birthdayLabel= new Label("Day of Birth:");
+        Label birthdayLabel= new Label("Age:");
         GridPane.setConstraints(birthdayLabel,0,6);
 
         //day of birthday
@@ -174,7 +174,7 @@ public class Main extends Application{
                 Sex.F
         );
         ComboBox comboBoxsex = new ComboBox(sex);
-        comboBoxsex.setPromptText("Choose text");
+        comboBoxsex.setPromptText("Choose gender");
         GridPane.setConstraints(comboBoxsex,1,7);
 
         Button SignUpButton = new Button("SignUp");
