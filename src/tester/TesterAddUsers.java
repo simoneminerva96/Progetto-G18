@@ -25,8 +25,8 @@ public class TesterAddUsers {
         u6.logIn("MIRQO", "1997");
 
         Location l1 = new Location("STRADELLA", "VIA G. BOVIO 68", "LOMBARDIA", "PV");
-        Advertisment a1 = new Advertisment(SportType.CALCETTO, l1, "2018-09-12", "18:00:00", Role.PORTIERE, Periodicity.GIORNALIERA,18, 21, Level.HIGH, Sex.M );
-        Advertisment a2 = new Advertisment(SportType.TENNIS, l1, "2018-06-08", "17:00:00", Role.NONE, Periodicity.SETTIMANALE, 18, 21, Level.HIGH, Sex.F);
+        Advertisment a1 = new Advertisment(SportType.CALCETTO, l1, "2018-09-12", "18:00:00", Role.PORTIERE, Periodicity.DAILY,18, 21, Level.HIGH, Sex.M );
+        Advertisment a2 = new Advertisment(SportType.TENNIS, l1, "2018-06-08", "17:00:00", Role.NONE, Periodicity.WEEKLY, 18, 21, Level.HIGH, Sex.F);
         //u6.addEvent(a1);
 
 

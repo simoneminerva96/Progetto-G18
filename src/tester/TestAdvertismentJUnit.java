@@ -1,18 +1,15 @@
 package tester;
 
 
-import advertisment.*;
-import junit.framework.TestCase;
-import org.junit.Test;
+import advertisment.Advertisment;
+import advertisment.Location;
+import advertisment.Periodicity;
+import advertisment.Role;
 import org.junit.Assert.*;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
-
+import org.junit.Test;
 import user.Level;
 import user.Sex;
 import user.SportType;
-import user.User;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -22,7 +19,7 @@ public class TestAdvertismentJUnit {
 
     Location l1 = new Location("BRONI", "VIA QUARTIERE PIAVE 14", "LOMBARDIA", "PV");
     Location l2 = new Location("PAVIA", "VIA FERRATA 5", "LOMBARDIA", "PV");
-    Advertisment a1 = new Advertisment(SportType.CALCETTO, l1, "2018-09-12", "18:00:00", Role.PORTIERE, Periodicity.SETTIMANALE, 18, 21, Level.HIGH, Sex.F);
+    Advertisment a1 = new Advertisment(SportType.CALCETTO, l1, "2018-09-12", "18:00:00", Role.PORTIERE, Periodicity.WEEKLY, 18, 21, Level.HIGH, Sex.F);
     Advertisment a2 = new Advertisment(SportType.PALLAVOLO, l2, "2018-07-12", "22:00:00", Role.PALLEGGIATORE, Periodicity.NONE, 25, 30, Level.LOW, Sex.F );
 
     @Test
@@ -63,7 +60,7 @@ public class TestAdvertismentJUnit {
 
     @Test
     public void testGetPeriodicity() {
-        assertEquals(Periodicity.SETTIMANALE, a1.getPeriodicity());
+        assertEquals(Periodicity.WEEKLY, a1.getPeriodicity());
         assertEquals(Periodicity.NONE, a2.getPeriodicity());
     }
 
