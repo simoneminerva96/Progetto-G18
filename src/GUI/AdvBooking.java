@@ -33,7 +33,7 @@ public class AdvBooking {
 
         returnHome.setOnAction(event -> {
 
-            HomePage.display("Home Page");
+            HomePage.display("HomePage");
             window.close();
         });
 

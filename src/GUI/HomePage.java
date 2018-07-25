@@ -95,9 +95,9 @@ public class HomePage {
         Label periodicityLabel= new Label("Periodicity:");
 
         ObservableList <Periodicity> period = FXCollections.observableArrayList(
-                Periodicity.GIORNALIERA,
-                Periodicity.SETTIMANALE,
-                Periodicity.MENSILE,
+                Periodicity.DAILY,
+                Periodicity.WEEKLY,
+                Periodicity.MONTHLY,
                 Periodicity.NONE
         );
         ComboBox comboBoxPeriodicity = new ComboBox(period);
@@ -167,10 +167,10 @@ public class HomePage {
         profileButton.setPrefSize(100,20);
 
         //create the button that makes log out
-        Button logOut= new Button("Log Out");
+        Button logOut= new Button("LogOut");
         logOut.setOnAction(event -> {
             window.close();
-            LogIn.display("");
+            LogIn.display("LogIn");
 
         });
         logOut.setPrefSize(100,20);

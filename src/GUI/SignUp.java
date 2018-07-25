@@ -37,7 +37,7 @@ public class SignUp {
         grid.setVgap(8);
         grid.setHgap(10);
 
-        Text welcomeText= new Text("If you dont't have an account,\n please sign up!");
+        Text welcomeText= new Text("If you don't have an account,\n please sign up!");
         welcomeText.setFont(Font.font("Ariel", FontWeight.LIGHT, 20));
         GridPane.setConstraints(welcomeText,0,0);
         //username Label
@@ -160,7 +160,7 @@ public class SignUp {
                 Sex.F
         );
         ComboBox comboBoxsex = new ComboBox(sex);
-        comboBoxsex.setPromptText("Choose sex");
+        comboBoxsex.setPromptText("Choose gender");
         GridPane.setConstraints(comboBoxsex,1,7);
 
         //this button allows sign up

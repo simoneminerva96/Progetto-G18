@@ -513,7 +513,7 @@ public class NewAdvertisement {
 
         );
         ComboBox comboBoxSex = new ComboBox(sex);
-        comboBoxSex.setPromptText("Choose sex");
+        comboBoxSex.setPromptText("Choose gender");
         GridPane.setConstraints(comboBoxSex,1,8);
 
 
@@ -523,9 +523,9 @@ public class NewAdvertisement {
         GridPane.setConstraints(periodicityLabel,0,7);
 
         ObservableList<Periodicity> periodicity = FXCollections.observableArrayList(
-               Periodicity.GIORNALIERA,
-                Periodicity.SETTIMANALE,
-                Periodicity.MENSILE,
+                Periodicity.DAILY,
+                Periodicity.WEEKLY,
+                Periodicity.MONTHLY,
                 Periodicity.NONE
         );
         ComboBox comboBoxPeriodicity = new ComboBox(periodicity);
